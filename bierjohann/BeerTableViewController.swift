@@ -9,10 +9,17 @@
 import UIKit
 
 class BeerTableViewController: UITableViewController {
-
+    
+    
+    var brands: [String] = []
+    var names: [String] = []
+    var number: [Int] = []
+    
     override func viewDidLoad() {
+//        tableView.contentInset.top = 50
         super.viewDidLoad()
-
+        (brands, names) = getData()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,25 +35,85 @@ class BeerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return brands.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "BeerTableViewCell"
+        
+        guard   let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BeerTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of BeerTableViewCell.")
+        }
+        // Fetches the appropriate beer for the data source layout.
+        let brand = brands[indexPath.row]
+        let name = names[indexPath.row]
+        
+        cell.brandLabel.text = brand
+        cell.nameLabel.text = name
+        cell.numberLabel.text = String(indexPath.row + 1)
+        
         return cell
     }
-    */
-
+    
+    
+    
+    
+    func extractString(s: String) -> String {
+        return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
+    }
+    
+    
+    func getData() -> ([String], [String]){
+        
+        var brands: [String] = []
+        var names: [String] = []
+        
+        let myURLString = "https://www.bierjohann.ch/"
+        var brand: String = ""
+        var name: String = ""
+        
+        guard let myURL = URL(string: myURLString) else {
+            print("Error: \(myURLString) doesn't seem to be a valid URL")
+            return ([""], [""])
+        }
+        do {
+            let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
+            myHTMLString.enumerateLines { line, _ in
+                if line.contains("slider__element--title") {
+                    brand = self.extractString(s: line)
+                    brands.append(brand)
+                }
+                if line.contains("slider__element--text") {
+                    name = self.extractString(s: line)
+                    names.append(name)
+                }
+            }
+        } catch let error {
+            print("Error: \(error)")
+        }
+        
+        return (brands, names)
+    }
+    
+    
+//    func fillData() {
+//        var brands: [String] = []
+//        var names: [String] = []
+//
+//        (brands, names) = getData()
+//        print(brands)
+//        print(names)
+//
+//    }
+    
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
