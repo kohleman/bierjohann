@@ -9,18 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Beer Table View Controller-->
+        <!--Bierjohann Beers on Tab-->
         <scene sceneID="b4f-UV-pGi">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="lKr-dg-OuE" customClass="BeerTableViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="60" sectionFooterHeight="50" id="LCU-os-PUo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="20" id="LCU-os-PUo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="scrollIndicatorInsets" minX="0.0" minY="50" maxX="0.0" maxY="50"/>
+                        <inset key="scrollIndicatorInsets" minX="0.0" minY="120" maxX="0.0" maxY="60"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerTableViewCell" id="1Jn-MP-BLR" customClass="BeerTableViewCell" customModule="bierjohann" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="375" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerTableViewCell" rowHeight="60" id="1Jn-MP-BLR" customClass="BeerTableViewCell" customModule="bierjohann" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jn-MP-BLR" id="uXX-CE-53e">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
@@ -61,7 +61,11 @@
                             <outlet property="delegate" destination="lKr-dg-OuE" id="4y5-9h-MK0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="TZc-V2-wJd"/>
+                    <navigationItem key="navigationItem" title="Bierjohann Beers on Tab" id="TZc-V2-wJd"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="HeaderUINavigationItem" destination="TZc-V2-wJd" id="qBW-gu-n8J"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evI-mh-Pgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,11 +76,17 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b9D-sH-MeN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vSN-zq-UW5">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="vSN-zq-UW5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cNH-5Y-9E1">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="lKr-dg-OuE" kind="relationship" relationship="rootViewController" id="nmk-9P-yDP"/>
                     </connections>

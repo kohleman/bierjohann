@@ -10,23 +10,41 @@ import UIKit
 
 class BeerTableViewController: UITableViewController {
     
-    
     var brands: [String] = []
     var names: [String] = []
     var number: [Int] = []
     
+//    @available(iOS, introduced:6.0)
+//    var refreshControl: UIRefreshControl?
+//
+//    var refreshControl = UIRefreshControl()
+//    refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//    refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+//    tableView.addSubview(refreshControl!)
+    
+    @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
-//        tableView.contentInset.top = 50
         super.viewDidLoad()
         (brands, names) = getData()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: #selector(someRefresh(sender:)), for: UIControlEvents.valueChanged)
+        self.refreshControl!.tintColor = UIColor(red:1, green:1, blue:1, alpha:1.0)
+        self.refreshControl!.backgroundColor = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Beer Data ...", attributes: attributes)
+        self.tableView.addSubview(refreshControl!)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,9 +53,26 @@ class BeerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if (brands.count > 0) {
+            return 1
+        }
+        else {
+            print("No data...")
+            HeaderUINavigationItem.title = "No data. Are you offline?"
+            return 0
+        }
+        
     }
-
+    
+    @objc func someRefresh(sender:AnyObject)
+    {
+        print("Refreshing...")
+        (brands, names) = getData()
+        self.refreshControl!.endRefreshing()
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return brands.count
     }
@@ -59,9 +94,6 @@ class BeerTableViewController: UITableViewController {
         
         return cell
     }
-    
-    
-    
     
     func extractString(s: String) -> String {
         return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
@@ -99,20 +131,6 @@ class BeerTableViewController: UITableViewController {
         
         return (brands, names)
     }
-    
-    
-//    func fillData() {
-//        var brands: [String] = []
-//        var names: [String] = []
-//
-//        (brands, names) = getData()
-//        print(brands)
-//        print(names)
-//
-//    }
-    
-    
-    
     
     /*
     // Override to support conditional editing of the table view.

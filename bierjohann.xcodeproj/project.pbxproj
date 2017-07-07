@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62499E5C1F077D4800CC518B /* extra_function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* extra_function.swift */; };
 		624BEB291EF70CF6008FF485 /* BeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */; };
 		624BEB2B1EF71725008FF485 /* BeerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */; };
 		62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A933F31EF6E5430006934B /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62499E5B1F077D4800CC518B /* extra_function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra_function.swift; sourceTree = "<group>"; };
 		624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
 		62A933F01EF6E5430006934B /* bierjohann.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bierjohann.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				62A933FA1EF6E5430006934B /* Assets.xcassets */,
 				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
 				62A933FF1EF6E5430006934B /* Info.plist */,
+				62499E5B1F077D4800CC518B /* extra_function.swift */,
 			);
 			path = bierjohann;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62499E5C1F077D4800CC518B /* extra_function.swift in Sources */,
 				62A933F61EF6E5430006934B /* ViewController.swift in Sources */,
 				624BEB291EF70CF6008FF485 /* BeerTableViewCell.swift in Sources */,
 				62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */,
