@@ -14,35 +14,42 @@ class BeerTableViewController: UITableViewController {
     var names: [String] = []
     var number: [Int] = []
     
-//    @available(iOS, introduced:6.0)
-//    var refreshControl: UIRefreshControl?
-//
-//    var refreshControl = UIRefreshControl()
-//    refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//    refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-//    tableView.addSubview(refreshControl!)
-    
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var Footer: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         (brands, names) = getData()
+        addRefreshControl()
+        setUpdatedLabel()
         
+    }
+    
+    func addRefreshControl () {
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl!.addTarget(self, action: #selector(someRefresh(sender:)), for: UIControlEvents.valueChanged)
-        self.refreshControl!.tintColor = UIColor(red:1, green:1, blue:1, alpha:1.0)
+        self.refreshControl!.addTarget(self, action: #selector(beerRefresh(sender:)), for: UIControlEvents.valueChanged)
+        self.refreshControl!.tintColor = UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0)
         self.refreshControl!.backgroundColor = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Beer Data ...", attributes: attributes)
         self.tableView.addSubview(refreshControl!)
+    }
+    
+    func setUpdatedLabel() {
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss dd.MM.yyyy"
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        
+        let d: Date? = dateFormatter.calendar.date(from: components)
+        let timestamp = dateFormatter.string(from: d!)
+        
+        Footer.text = "Updated: \(timestamp)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +61,7 @@ class BeerTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (brands.count > 0) {
+            HeaderUINavigationItem.title = "Bierjohann Beers on Tab"
             return 1
         }
         else {
@@ -61,16 +69,15 @@ class BeerTableViewController: UITableViewController {
             HeaderUINavigationItem.title = "No data. Are you offline?"
             return 0
         }
-        
     }
     
-    @objc func someRefresh(sender:AnyObject)
+    @objc func beerRefresh(sender:AnyObject)
     {
         print("Refreshing...")
         (brands, names) = getData()
+        setUpdatedLabel()
+        tableView.reloadData()
         self.refreshControl!.endRefreshing()
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,7 +88,7 @@ class BeerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "BeerTableViewCell"
         
-        guard   let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BeerTableViewCell  else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BeerTableViewCell  else {
             fatalError("The dequeued cell is not an instance of BeerTableViewCell.")
         }
         // Fetches the appropriate beer for the data source layout.
@@ -95,10 +102,10 @@ class BeerTableViewController: UITableViewController {
         return cell
     }
     
+    
     func extractString(s: String) -> String {
         return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
     }
-    
     
     func getData() -> ([String], [String]){
         
@@ -113,18 +120,22 @@ class BeerTableViewController: UITableViewController {
             print("Error: \(myURLString) doesn't seem to be a valid URL")
             return ([""], [""])
         }
+        
+        
         do {
-            let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
-            myHTMLString.enumerateLines { line, _ in
-                if line.contains("slider__element--title") {
-                    brand = self.extractString(s: line)
-                    brands.append(brand)
+//            DispatchQueue.main.async {
+                let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
+                myHTMLString.enumerateLines { line, _ in
+                    if line.contains("slider__element--title") {
+                        brand = self.extractString(s: line)
+                        brands.append(brand)
+                    }
+                    if line.contains("slider__element--text") {
+                        name = self.extractString(s: line)
+                        names.append(name)
+                    }
                 }
-                if line.contains("slider__element--text") {
-                    name = self.extractString(s: line)
-                    names.append(name)
-                }
-            }
+//                } as! @convention(block) () -> Void
         } catch let error {
             print("Error: \(error)")
         }
