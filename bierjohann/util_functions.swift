@@ -9,6 +9,7 @@
 import Foundation
 
 
-func extractString_ZZ (s: String) -> String {
+func extractString(s: String) -> String {
     return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
 }
+

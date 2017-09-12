@@ -73,13 +73,17 @@
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="w1n-Zk-Otw"/>
                         <rightBarButtonItems>
                             <barButtonItem id="vhg-YU-RPt"/>
-                            <barButtonItem systemItem="refresh" id="fPl-4a-chU"/>
+                            <barButtonItem systemItem="refresh" id="fPl-4a-chU">
+                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="Footer" destination="Ub8-Bo-Zy9" id="xGM-so-fIH"/>
                         <outlet property="HeaderUINavigationItem" destination="TZc-V2-wJd" id="qBW-gu-n8J"/>
+                        <outlet property="MenuButton" destination="w1n-Zk-Otw" id="mtW-gi-UPz"/>
+                        <outlet property="RefreshButton" destination="fPl-4a-chU" id="2T1-vz-q5j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evI-mh-Pgh" userLabel="First Responder" sceneMemberID="firstResponder"/>

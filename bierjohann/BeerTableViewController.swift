@@ -8,21 +8,34 @@
 
 import UIKit
 
+
 class BeerTableViewController: UITableViewController {
     
     var brands: [String] = []
     var names: [String] = []
     var number: [Int] = []
+    let myURLString = "https://www.bierjohann.ch/"
+    
+    
+    var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
     
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var Footer: UILabel!
+    @IBOutlet weak var RefreshButton: UIBarButtonItem!
+    @IBOutlet weak var MenuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (brands, names) = getData()
+        (brands, names) = getData(webaddress: myURLString)
         addRefreshControl()
         setUpdatedLabel()
+        
+        RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
+        RefreshButton.tintColor = bierjohann_brown
+        RefreshButton.target = self
+        
+        MenuButton.tintColor = bierjohann_brown
         
     }
     
@@ -31,7 +44,7 @@ class BeerTableViewController: UITableViewController {
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl!.addTarget(self, action: #selector(beerRefresh(sender:)), for: UIControlEvents.valueChanged)
         self.refreshControl!.tintColor = UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0)
-        self.refreshControl!.backgroundColor = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
+        self.refreshControl!.backgroundColor = bierjohann_brown
         let attributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Beer Data ...", attributes: attributes)
         self.tableView.addSubview(refreshControl!)
@@ -74,7 +87,7 @@ class BeerTableViewController: UITableViewController {
     @objc func beerRefresh(sender:AnyObject)
     {
         print("Refreshing...")
-        (brands, names) = getData()
+        (brands, names) = getData(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
         self.refreshControl!.endRefreshing()
@@ -102,46 +115,51 @@ class BeerTableViewController: UITableViewController {
         return cell
     }
     
-    
-    func extractString(s: String) -> String {
-        return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
-    }
-    
-    func getData() -> ([String], [String]){
+    func getData(webaddress: String) -> ([String], [String]){
         
         var brands: [String] = []
         var names: [String] = []
         
-        let myURLString = "https://www.bierjohann.ch/"
         var brand: String = ""
         var name: String = ""
+        var myHTMLString: String = ""
         
-        guard let myURL = URL(string: myURLString) else {
+        guard let myURL = URL(string: webaddress) else {
             print("Error: \(myURLString) doesn't seem to be a valid URL")
             return ([""], [""])
         }
         
+        let myGroup = DispatchGroup()
         
         do {
-//            DispatchQueue.main.async {
-                let myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
-                myHTMLString.enumerateLines { line, _ in
-                    if line.contains("slider__element--title") {
-                        brand = self.extractString(s: line)
-                        brands.append(brand)
-                    }
-                    if line.contains("slider__element--text") {
-                        name = self.extractString(s: line)
-                        names.append(name)
-                    }
-                }
-//                } as! @convention(block) () -> Void
-        } catch let error {
+            print("Do some async work...")
+            myGroup.enter()
+            myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
+        }
+        catch let error {
             print("Error: \(error)")
+        }
+        myGroup.leave()
+        myGroup.notify(queue: .main) {
+            print("Finished all requests.")
+        }
+        
+        myHTMLString.enumerateLines { line, _ in
+            if line.contains("slider__element--title") {
+                brand = extractString(s: line)
+                brands.append(brand)
+            }
+            if line.contains("slider__element--text") {
+                name = extractString(s: line)
+                names.append(name)
+            }
         }
         
         return (brands, names)
     }
+    
+    
+    
     
     /*
     // Override to support conditional editing of the table view.
