@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import os.log
 
+var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
 
 class BeerTableViewController: UITableViewController {
     
@@ -16,8 +18,7 @@ class BeerTableViewController: UITableViewController {
     var number: [Int] = []
     let myURLString = "https://www.bierjohann.ch/"
     
-    
-    var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
+    let cellIdentifier = "BeerTableViewCell"
     
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,6 +28,7 @@ class BeerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         (brands, names) = getData(webaddress: myURLString)
         addRefreshControl()
         setUpdatedLabel()
@@ -34,9 +36,7 @@ class BeerTableViewController: UITableViewController {
         RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
         RefreshButton.tintColor = bierjohann_brown
         RefreshButton.target = self
-        
         MenuButton.tintColor = bierjohann_brown
-        
     }
     
     func addRefreshControl () {
@@ -51,26 +51,13 @@ class BeerTableViewController: UITableViewController {
     }
     
     func setUpdatedLabel() {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss dd.MM.yyyy"
-        
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        
-        let d: Date? = dateFormatter.calendar.date(from: components)
-        let timestamp = dateFormatter.string(from: d!)
-        
-        Footer.text = "Updated: \(timestamp)"
+        Footer.text = "Updated: \(get_timestamp())"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (brands.count > 0) {
@@ -86,7 +73,7 @@ class BeerTableViewController: UITableViewController {
     
     @objc func beerRefresh(sender:AnyObject)
     {
-        print("Refreshing...")
+        os_log("Refreshing", log: OSLog.default, type: .debug)
         (brands, names) = getData(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
@@ -99,7 +86,6 @@ class BeerTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "BeerTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BeerTableViewCell  else {
             fatalError("The dequeued cell is not an instance of BeerTableViewCell.")
@@ -114,6 +100,27 @@ class BeerTableViewController: UITableViewController {
         
         return cell
     }
+    
+    // called on a selected row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let brand = (brands[indexPath.row])
+        let name = (names[indexPath.row])
+        os_log("Searching ...", log:OSLog.default, type: .debug)
+                
+        let encodedBrand = prepareStringForURLSearch(s: brand)
+        let encodedName = prepareStringForURLSearch(s: name)
+        
+        guard let url = URL(string: "https://www.google.com/search?q=" + encodedBrand + "+" + encodedName) else {
+            return //be safe
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
     
     func getData(webaddress: String) -> ([String], [String]){
         
@@ -158,7 +165,7 @@ class BeerTableViewController: UITableViewController {
         return (brands, names)
     }
     
-    
+}
     
     
     /*
@@ -206,4 +213,4 @@ class BeerTableViewController: UITableViewController {
     }
     */
 
-}
+
