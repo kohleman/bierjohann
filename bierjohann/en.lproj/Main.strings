@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "brand"; ObjectID = "1TC-KV-S9n"; */
+"1TC-KV-S9n.text" = "brand";
+
+/* Class = "UILabel"; text = "number"; ObjectID = "ItB-Ds-hVE"; */
+"ItB-Ds-hVE.text" = "number";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "Rkp-Dq-WJC"; */
+"Rkp-Dq-WJC.text" = "name";
+
+/* Class = "UINavigationItem"; title = "Bierjohann Beers on Tab"; ObjectID = "TZc-V2-wJd"; */
+"TZc-V2-wJd.title" = "Bierjohann Beers on Tab";
+
+/* Class = "UILabel"; text = "Updated: "; ObjectID = "Ub8-Bo-Zy9"; */
+"Ub8-Bo-Zy9.text" = "Updated";
+
+/* Class = "UIBarButtonItem"; title = "Menu"; ObjectID = "w1n-Zk-Otw"; */
+"w1n-Zk-Otw.title" = "Menu";

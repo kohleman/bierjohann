@@ -16,6 +16,10 @@ func extractString(s: String) -> String {
 func get_timestamp() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm:ss dd.MM.yyyy"
+    // not hardcoded, use the localized style
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .medium
+    
 
     let date = Date()
     let calendar = Calendar.current

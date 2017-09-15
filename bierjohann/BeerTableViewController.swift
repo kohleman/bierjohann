@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import os.log
 
 var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
 
@@ -17,8 +16,10 @@ class BeerTableViewController: UITableViewController {
     var names: [String] = []
     var number: [Int] = []
     let myURLString = "https://www.bierjohann.ch/"
-    
+    let BierJohannName = "Bierjohann"
     let cellIdentifier = "BeerTableViewCell"
+    let googleSearchString = "https://www.google.com/search?q="
+    
     
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -41,17 +42,18 @@ class BeerTableViewController: UITableViewController {
     
     func addRefreshControl () {
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl!.addTarget(self, action: #selector(beerRefresh(sender:)), for: UIControlEvents.valueChanged)
         self.refreshControl!.tintColor = UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0)
         self.refreshControl!.backgroundColor = bierjohann_brown
         let attributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Beer Data ...", attributes: attributes)
+        let fetching = NSLocalizedString("Fetching", comment: "Shows up on refreshing via pull")
+        self.refreshControl!.attributedTitle = NSAttributedString(string: fetching, attributes: attributes)
         self.tableView.addSubview(refreshControl!)
     }
     
     func setUpdatedLabel() {
-        Footer.text = "Updated: \(get_timestamp())"
+        let updated = NSLocalizedString("Updated", comment: "Label preceding the datetimestamp value")
+        Footer.text = "\(updated): \(get_timestamp())"
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,19 +63,19 @@ class BeerTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (brands.count > 0) {
-            HeaderUINavigationItem.title = "Bierjohann Beers on Tab"
+            HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
             return 1
         }
         else {
             print("No data...")
-            HeaderUINavigationItem.title = "No data. Are you offline?"
+            HeaderUINavigationItem.title = NSLocalizedString("NoDataTitle", comment: "Data loading failed")
             return 0
         }
     }
     
     @objc func beerRefresh(sender:AnyObject)
     {
-        os_log("Refreshing", log: OSLog.default, type: .debug)
+//        os_log("Refreshing", log: OSLog.default, type: .debug)
         (brands, names) = getData(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
@@ -105,12 +107,12 @@ class BeerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let brand = (brands[indexPath.row])
         let name = (names[indexPath.row])
-        os_log("Searching ...", log:OSLog.default, type: .debug)
-                
+//        os_log("Searching ...", log:OSLog.default, type: .debug)
+        
         let encodedBrand = prepareStringForURLSearch(s: brand)
         let encodedName = prepareStringForURLSearch(s: name)
         
-        guard let url = URL(string: "https://www.google.com/search?q=" + encodedBrand + "+" + encodedName) else {
+        guard let url = URL(string: googleSearchString + encodedBrand + "+" + encodedName) else {
             return //be safe
         }
         
@@ -166,8 +168,12 @@ class BeerTableViewController: UITableViewController {
     }
     
 }
-    
-    
+
+
+//https://www.ratebeer.com
+//<div class="ratingValue" itemprop="ratingValue">55</div>
+//<b><span id="_ratingCount8" itemprop="ratingCount" itemprop="reviewCount">41</span></b>
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
