@@ -10,10 +10,9 @@
 		62499E5C1F077D4800CC518B /* util_functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* util_functions.swift */; };
 		624BEB291EF70CF6008FF485 /* BeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */; };
 		624BEB2B1EF71725008FF485 /* BeerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */; };
-		62932A5F1F6C14CC001082B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62932A5E1F6C14CC001082B1 /* Info.plist */; };
+		628F80A81F6DB00A0093BEE4 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */; };
 		62932A7F1F6C1BA4001082B1 /* Bierjohann_logo_claim.png in Resources */ = {isa = PBXBuildFile; fileRef = 62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */; };
 		62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A933F31EF6E5430006934B /* AppDelegate.swift */; };
-		62A933F61EF6E5430006934B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A933F51EF6E5430006934B /* ViewController.swift */; };
 		62A933F91EF6E5430006934B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A933F71EF6E5430006934B /* Main.storyboard */; };
 		62A933FB1EF6E5430006934B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62A933FA1EF6E5430006934B /* Assets.xcassets */; };
 		62A933FE1EF6E5430006934B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */; };
@@ -43,11 +42,13 @@
 		62499E5B1F077D4800CC518B /* util_functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util_functions.swift; sourceTree = "<group>"; };
 		624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
+		628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		629056BE1F6D3D4B00E66877 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Info.plist; sourceTree = "<group>"; };
+		629056C91F6D3D4B00E66877 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		62932A5E1F6C14CC001082B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bierjohann_logo_claim.png; path = ../../../../Downloads/Bierjohann_logo_claim.png; sourceTree = "<group>"; };
+		62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bierjohann_logo_claim.png; sourceTree = "<group>"; };
 		62A933F01EF6E5430006934B /* bierjohann.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bierjohann.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A933F31EF6E5430006934B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62A933F51EF6E5430006934B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		62A933F81EF6E5430006934B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62A933FA1EF6E5430006934B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62A933FD1EF6E5430006934B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62932A811F6C1D22001082B1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		62A933E71EF6E5420006934B = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +123,12 @@
 		62A933F21EF6E5430006934B /* bierjohann */ = {
 			isa = PBXGroup;
 			children = (
-				62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */,
+				629056BD1F6D3D4B00E66877 /* Info.plist */,
+				62932A811F6C1D22001082B1 /* resources */,
 				62B91F3F1F6BDEA40077A288 /* Localizable.strings */,
 				62A933F31EF6E5430006934B /* AppDelegate.swift */,
-				62A933F51EF6E5430006934B /* ViewController.swift */,
 				62A933F71EF6E5430006934B /* Main.storyboard */,
+				628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */,
 				624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */,
 				624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */,
 				62A933FA1EF6E5430006934B /* Assets.xcassets */,
@@ -211,7 +221,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Kohler  Manuel (ID SIS)";
+				ORGANIZATIONNAME = "Manuel Kohler";
 				TargetAttributes = {
 					62A933EF1EF6E5420006934B = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -243,6 +253,8 @@
 				en,
 				Base,
 				de,
+				ko,
+				pl,
 			);
 			mainGroup = 62A933E71EF6E5420006934B;
 			productRefGroup = 62A933F11EF6E5430006934B /* Products */;
@@ -264,7 +276,6 @@
 				62A933FE1EF6E5430006934B /* LaunchScreen.storyboard in Resources */,
 				62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */,
 				62A933FB1EF6E5430006934B /* Assets.xcassets in Resources */,
-				62932A5F1F6C14CC001082B1 /* Info.plist in Resources */,
 				62A933F91EF6E5430006934B /* Main.storyboard in Resources */,
 				62932A7F1F6C1BA4001082B1 /* Bierjohann_logo_claim.png in Resources */,
 			);
@@ -292,9 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				62499E5C1F077D4800CC518B /* util_functions.swift in Sources */,
-				62A933F61EF6E5430006934B /* ViewController.swift in Sources */,
 				624BEB291EF70CF6008FF485 /* BeerTableViewCell.swift in Sources */,
 				62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */,
+				628F80A81F6DB00A0093BEE4 /* InfoTableViewController.swift in Sources */,
 				624BEB2B1EF71725008FF485 /* BeerTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +342,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		629056BD1F6D3D4B00E66877 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				629056BE1F6D3D4B00E66877 /* de */,
+				629056C91F6D3D4B00E66877 /* en */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
 		62A933F71EF6E5430006934B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -485,9 +505,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -501,9 +521,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -516,7 +536,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bierjohann.app/bierjohann";
 			};
@@ -531,7 +551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bierjohann.app/bierjohann";
 			};
@@ -545,7 +565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = bierjohann;
 			};
@@ -559,7 +579,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = bierjohann;
 			};

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9D-sH-MeN">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,12 +14,12 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="lKr-dg-OuE" customClass="BeerTableViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="20" sectionFooterHeight="50" id="LCU-os-PUo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="120" maxX="0.0" maxY="60"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ub8-Bo-Zy9">
-                            <rect key="frame" x="0.0" y="81" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="81" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
@@ -27,10 +27,10 @@
                         </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerTableViewCell" rowHeight="61" id="1Jn-MP-BLR" customClass="BeerTableViewCell" customModule="bierjohann" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="61"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jn-MP-BLR" id="uXX-CE-53e">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TC-KV-S9n">
@@ -47,10 +47,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItB-Ds-hVE">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItB-Ds-hVE">
                                             <rect key="frame" x="12" y="9" width="42" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                            <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -70,7 +70,12 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Bierjohann Beers on Tab" id="TZc-V2-wJd">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="w1n-Zk-Otw"/>
+                        <barButtonItem key="leftBarButtonItem" title="Info" id="fKQ-0g-Nro">
+                            <color key="tintColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="R2h-Te-bE8" kind="show" id="MpG-X5-hh2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fPl-4a-chU">
                             <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -80,18 +85,52 @@
                     <connections>
                         <outlet property="Footer" destination="Ub8-Bo-Zy9" id="xGM-so-fIH"/>
                         <outlet property="HeaderUINavigationItem" destination="TZc-V2-wJd" id="qBW-gu-n8J"/>
-                        <outlet property="MenuButton" destination="w1n-Zk-Otw" id="mtW-gi-UPz"/>
                         <outlet property="RefreshButton" destination="fPl-4a-chU" id="2T1-vz-q5j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evI-mh-Pgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.600000000000001" y="-85.007496251874073"/>
+            <point key="canvasLocation" x="2072.8000000000002" y="-85.007496251874073"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Controller-->
+        <scene sceneID="iSt-aw-orf">
+            <objects>
+                <viewController id="R2h-Te-bE8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uxh-dP-o5t"/>
+                        <viewControllerLayoutGuide type="bottom" id="O5e-5d-1oq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="center" id="6Ji-D0-U4d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bierjohannapp@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQb-14-uV5">
+                                <rect key="frame" x="16" y="26" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2017 Manuel Kohler" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-UR-T4g">
+                                <rect key="frame" x="16" y="0.0" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSt-po-V5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812.5" y="-86.25"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="Pqt-0F-NnT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b9D-sH-MeN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Home" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b9D-sH-MeN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="xSa-jn-hY4"/>
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -110,7 +149,8 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIm-SJ-LM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-897" y="-85"/>
+            <point key="canvasLocation" x="1318" y="-85"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

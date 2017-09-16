@@ -37,7 +37,6 @@ class BeerTableViewController: UITableViewController {
         RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
         RefreshButton.tintColor = bierjohann_brown
         RefreshButton.target = self
-        MenuButton.tintColor = bierjohann_brown
     }
     
     func addRefreshControl () {
@@ -75,7 +74,6 @@ class BeerTableViewController: UITableViewController {
     
     @objc func beerRefresh(sender:AnyObject)
     {
-//        os_log("Refreshing", log: OSLog.default, type: .debug)
         (brands, names) = getData(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
