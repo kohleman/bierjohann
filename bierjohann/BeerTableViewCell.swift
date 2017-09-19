@@ -3,7 +3,7 @@
 //  bierjohann
 //
 //  Created by Kohler Manuel on 18.06.17.
-//  Copyright © 2017 Kohler  Manuel (ID SIS). All rights reserved.
+//  Copyright © 2017 Kohler  Manuel. All rights reserved.
 //
 
 import UIKit
@@ -18,6 +18,10 @@ class BeerTableViewCell: UITableViewCell {
     @IBOutlet weak var brandLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!    
     @IBOutlet weak var numberLabel: UILabel!
+    
+    @IBOutlet weak var ratingValue: UILabel!
+    @IBOutlet weak var ratingCount: UILabel!
+    @IBOutlet weak var RatingLabel: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

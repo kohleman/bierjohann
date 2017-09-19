@@ -3,7 +3,7 @@
 //  bierjohann
 //
 //  Created by Kohler Manuel on 01.07.17.
-//  Copyright © 2017 Kohler  Manuel (ID SIS). All rights reserved.
+//  Copyright © 2017 Kohler  Manuel. All rights reserved.
 //
 
 import Foundation
@@ -32,4 +32,33 @@ func get_timestamp() -> String {
 func prepareStringForURLSearch (s: String) -> String{    
     return s.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 }
+
+
+func getURLSite(webaddress: String) -> String {
+    
+    var myHTMLString: String = ""
+    
+    guard let myURL = URL(string: webaddress) else {
+        print("Error: \(webaddress) doesn't seem to be a valid URL")
+        return ("")
+    }
+    
+    let myGroup = DispatchGroup()
+    
+    do {
+        print("Do some async work...")
+        myGroup.enter()
+        myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
+    }
+    catch let error {
+        print("Error: \(error)")
+    }
+    myGroup.leave()
+    myGroup.notify(queue: .main) {
+        print("Finished all requests.")
+    }
+    
+    return (myHTMLString)
+}
+
 

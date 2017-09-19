@@ -3,10 +3,11 @@
 //  bierjohann
 //
 //  Created by Kohler Manuel on 18.06.17.
-//  Copyright © 2017 Kohler  Manuel (ID SIS). All rights reserved.
+//  Copyright © 2017 Kohler  Manuel. All rights reserved.
 //
 
 import UIKit
+import os.log
 
 var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
 
@@ -30,7 +31,7 @@ class BeerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (brands, names) = getData(webaddress: myURLString)
+        (brands, names) = extractBeers(webaddress: myURLString)
         addRefreshControl()
         setUpdatedLabel()
         
@@ -63,6 +64,7 @@ class BeerTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (brands.count > 0) {
             HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
+            HeaderUINavigationItem.leftBarButtonItem?.title = "Info"
             return 1
         }
         else {
@@ -74,7 +76,7 @@ class BeerTableViewController: UITableViewController {
     
     @objc func beerRefresh(sender:AnyObject)
     {
-        (brands, names) = getData(webaddress: myURLString)
+        (brands, names) = extractBeers(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
         self.refreshControl!.endRefreshing()
@@ -90,6 +92,9 @@ class BeerTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BeerTableViewCell  else {
             fatalError("The dequeued cell is not an instance of BeerTableViewCell.")
         }
+        
+        cell.RatingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
+        
         // Fetches the appropriate beer for the data source layout.
         let brand = brands[indexPath.row]
         let name = names[indexPath.row]
@@ -97,6 +102,8 @@ class BeerTableViewController: UITableViewController {
         cell.brandLabel.text = brand
         cell.nameLabel.text = name
         cell.numberLabel.text = String(indexPath.row + 1)
+        cell.ratingValue.text = "4.53"
+        cell.ratingCount.text = "1260"
         
         return cell
     }
@@ -105,7 +112,11 @@ class BeerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let brand = (brands[indexPath.row])
         let name = (names[indexPath.row])
-//        os_log("Searching ...", log:OSLog.default, type: .debug)
+        if #available(iOS 10.0, *) {
+            os_log("Searching ...", log:OSLog.default, type: .debug)
+        } else {
+            // Fallback on earlier versions
+        }
         
         let encodedBrand = prepareStringForURLSearch(s: brand)
         let encodedName = prepareStringForURLSearch(s: name)
@@ -122,34 +133,15 @@ class BeerTableViewController: UITableViewController {
     }
     
     
-    func getData(webaddress: String) -> ([String], [String]){
+    func extractBeers(webaddress: String) -> ([String], [String]){
         
         var brands: [String] = []
         var names: [String] = []
         
         var brand: String = ""
         var name: String = ""
-        var myHTMLString: String = ""
         
-        guard let myURL = URL(string: webaddress) else {
-            print("Error: \(myURLString) doesn't seem to be a valid URL")
-            return ([""], [""])
-        }
-        
-        let myGroup = DispatchGroup()
-        
-        do {
-            print("Do some async work...")
-            myGroup.enter()
-            myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
-        }
-        catch let error {
-            print("Error: \(error)")
-        }
-        myGroup.leave()
-        myGroup.notify(queue: .main) {
-            print("Finished all requests.")
-        }
+        let myHTMLString = getURLSite(webaddress: webaddress)
         
         myHTMLString.enumerateLines { line, _ in
             if line.contains("slider__element--title") {

@@ -3,3 +3,4 @@
 "Menu" = "Menu";
 "NoDataTitle" = "No data. Are you offline?";
 "Fetching" = "Fetching Beer Data ...";
+"RatingLabel" = "Rating";

@@ -3,7 +3,7 @@
 //  bierjohannUITests
 //
 //  Created by Kohler Manuel on 18.06.17.
-//  Copyright © 2017 Kohler  Manuel (ID SIS). All rights reserved.
+//  Copyright © 2017 Kohler  Manuel. All rights reserved.
 //
 
 import XCTest
@@ -18,7 +18,11 @@ class bierjohannUITests: XCTestCase {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+        if #available(iOS 9.0, *) {
+            XCUIApplication().launch()
+        } else {
+            // Fallback on earlier versions
+        }
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -28,9 +32,9 @@ class bierjohannUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    //func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    //}
     
 }

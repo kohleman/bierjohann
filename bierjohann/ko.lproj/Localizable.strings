@@ -3,3 +3,4 @@
 "Menu" = "메뉴";
 "NoDataTitle" = "데이터 없음. 오프라인입니까?";
 "Fetching" = "로드 중";
+"RatingLabel" = "평가";
