@@ -13,14 +13,13 @@ var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
 
 class BeerTableViewController: UITableViewController {
     
-    var brands: [String] = []
-    var names: [String] = []
-    var number: [Int] = []
+    //MARK: Properties
+    var beers = [Beer]()
+    
     let myURLString = "https://www.bierjohann.ch/"
     let BierJohannName = "Bierjohann"
     let cellIdentifier = "BeerTableViewCell"
     let googleSearchString = "https://www.google.com/search?q="
-    
     
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,7 +30,10 @@ class BeerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (brands, names) = extractBeers(webaddress: myURLString)
+        extractBeers(webaddress: myURLString)
+        
+        print("Got \(self.beers.count) beers.")
+        
         addRefreshControl()
         setUpdatedLabel()
         
@@ -62,7 +64,7 @@ class BeerTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if (brands.count > 0) {
+        if (beers.count > 0) {
             HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
             HeaderUINavigationItem.leftBarButtonItem?.title = "Info"
             return 1
@@ -76,14 +78,14 @@ class BeerTableViewController: UITableViewController {
     
     @objc func beerRefresh(sender:AnyObject)
     {
-        (brands, names) = extractBeers(webaddress: myURLString)
+        extractBeers(webaddress: myURLString)
         setUpdatedLabel()
         tableView.reloadData()
         self.refreshControl!.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return brands.count
+        return beers.count
     }
 
     
@@ -95,31 +97,30 @@ class BeerTableViewController: UITableViewController {
         
         cell.RatingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
         
-        // Fetches the appropriate beer for the data source layout.
-        let brand = brands[indexPath.row]
-        let name = names[indexPath.row]
-        
-        cell.brandLabel.text = brand
-        cell.nameLabel.text = name
-        cell.numberLabel.text = String(indexPath.row + 1)
-        cell.ratingValue.text = "4.53"
-        cell.ratingCount.text = "1260"
+        let beer = beers[indexPath.row]
+
+        cell.numberLabel.text = String(beer.runningNumber)
+        cell.brandLabel.text = beer.brand
+        cell.nameLabel.text = beer.type
+        cell.ratingValue.text = String(beer.ratingValue)
+        cell.ratingCount.text = String(beer.ratingCount)
         
         return cell
     }
     
     // called on a selected row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let brand = (brands[indexPath.row])
-        let name = (names[indexPath.row])
+
+        let beer = beers[indexPath.row]
+
         if #available(iOS 10.0, *) {
             os_log("Searching ...", log:OSLog.default, type: .debug)
         } else {
             // Fallback on earlier versions
         }
         
-        let encodedBrand = prepareStringForURLSearch(s: brand)
-        let encodedName = prepareStringForURLSearch(s: name)
+        let encodedBrand = prepareStringForURLSearch(s: beer.brand)
+        let encodedName = prepareStringForURLSearch(s: beer.type)
         
         guard let url = URL(string: googleSearchString + encodedBrand + "+" + encodedName) else {
             return //be safe
@@ -133,30 +134,30 @@ class BeerTableViewController: UITableViewController {
     }
     
     
-    func extractBeers(webaddress: String) -> ([String], [String]){
-        
-        var brands: [String] = []
-        var names: [String] = []
-        
-        var brand: String = ""
-        var name: String = ""
+    func extractBeers(webaddress: String) {
+
+        var aBrand: String = ""
+        var aName: String = ""
+        var counter: Int = 1
         
         let myHTMLString = getURLSite(webaddress: webaddress)
         
         myHTMLString.enumerateLines { line, _ in
             if line.contains("slider__element--title") {
-                brand = extractString(s: line)
-                brands.append(brand)
+                aBrand = extractString(s: line)
             }
+
             if line.contains("slider__element--text") {
-                name = extractString(s: line)
-                names.append(name)
+                aName = extractString(s: line)
+
+                guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0) else {
+                    fatalError("Unable to instantiate class Beer with " + aBrand)
+                }
+                self.beers.append(aBeer)
+                counter += 1
             }
         }
-        
-        return (brands, names)
     }
-    
 }
 
 

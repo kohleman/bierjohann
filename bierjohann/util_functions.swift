@@ -10,7 +10,8 @@ import Foundation
 
 
 func extractString(s: String) -> String {
-    return s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
+    let rawString = s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
+    return rawString.trimmingCharacters(in: .whitespacesAndNewlines)
 }
 
 func get_timestamp() -> String {

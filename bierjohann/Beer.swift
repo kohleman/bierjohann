@@ -6,12 +6,13 @@
 //  Copyright © 2017 Manuel Kohler. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 class Beer {
     
     //MARK: Properties
+    var runningNumber: Int
     var brand : String
     var type : String
     var ratingValue: Float
@@ -20,7 +21,7 @@ class Beer {
     
     //MARK: Initialization
     
-    init?(brand: String, type: String, ratingValue: Float, ratingCount: Int) {
+    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int) {
         
         guard !brand.isEmpty && !type.isEmpty else {
             return nil
@@ -34,7 +35,7 @@ class Beer {
             return nil
         }
 
-        
+        self.runningNumber = runningNumber
         self.brand = brand
         self.type = type
         self.ratingValue = ratingValue
