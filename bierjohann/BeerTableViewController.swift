@@ -32,7 +32,6 @@ class BeerTableViewController: UITableViewController {
         
         // Load any saved beers, otherwise load sample data.
         if let savedBeers = loadBeers() {
-            print(savedBeers)
 
             extractBeers(webaddress: myURLString)
             print("Got \(self.beers.count) beers.")
