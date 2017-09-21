@@ -30,9 +30,23 @@ class BeerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        extractBeers(webaddress: myURLString)
+        // Load any saved beers, otherwise load sample data.
+        if let savedBeers = loadBeers() {
+            print(savedBeers)
+
+            extractBeers(webaddress: myURLString)
+            print("Got \(self.beers.count) beers.")
+
+            diffBeers(savedBeers: savedBeers)
+
+        }
+        else {
+            // Load the sample data.
+            // loadSampleBeers()
+        }
         
-        print("Got \(self.beers.count) beers.")
+        
+        saveBeers()
         
         addRefreshControl()
         setUpdatedLabel()
@@ -95,7 +109,7 @@ class BeerTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of BeerTableViewCell.")
         }
         
-        cell.RatingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
+        cell.ratingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
         
         let beer = beers[indexPath.row]
 
@@ -104,6 +118,7 @@ class BeerTableViewController: UITableViewController {
         cell.nameLabel.text = beer.type
         cell.ratingValue.text = String(beer.ratingValue)
         cell.ratingCount.text = String(beer.ratingCount)
+        cell.newLabel.isHidden = beer.new
         
         return cell
     }
@@ -132,13 +147,15 @@ class BeerTableViewController: UITableViewController {
             UIApplication.shared.openURL(url)
         }
     }
-    
-    
-    func extractBeers(webaddress: String) {
+
+    //MARK: Private Methods
+    private func extractBeers(webaddress: String) {
 
         var aBrand: String = ""
         var aName: String = ""
         var counter: Int = 1
+        
+        self.beers.removeAll()
         
         let myHTMLString = getURLSite(webaddress: webaddress)
         
@@ -150,7 +167,7 @@ class BeerTableViewController: UITableViewController {
             if line.contains("slider__element--text") {
                 aName = extractString(s: line)
 
-                guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0) else {
+                guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true) else {
                     fatalError("Unable to instantiate class Beer with " + aBrand)
                 }
                 self.beers.append(aBeer)
@@ -158,56 +175,43 @@ class BeerTableViewController: UITableViewController {
             }
         }
     }
+    
+    private func diffBeers(savedBeers: [Beer]) {
+        
+        beers[1].brand = "kasdl"
+        beers[9].brand = "asafs"
+        
+        let diffIndex = zip(beers, savedBeers).enumerated().filter() {
+            $1.0.brand != $1.1.brand
+            }.map{$0.0}
+
+        print("ANSWER: \(diffIndex)")
+        
+        for index in diffIndex {
+            beers[index].new = false
+        }
+    }
+        
+        
+
+    private func saveBeers() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(beers, toFile: Beer.ArchiveURL.path)
+        
+        if #available(iOS 10.0, *) {
+            if isSuccessfulSave {
+                    os_log("Beers successfully saved.", log: OSLog.default, type: .debug)
+            } else {
+                os_log("Failed to save beers...", log: OSLog.default, type: .error)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    
+    private func loadBeers() -> [Beer]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer]
+    }
+
+    
 }
-
-
-//https://www.ratebeer.com
-//<div class="ratingValue" itemprop="ratingValue">55</div>
-//<b><span id="_ratingCount8" itemprop="ratingCount" itemprop="reviewCount">41</span></b>
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
