@@ -18,6 +18,7 @@ class Beer: NSObject, NSCoding {
     var ratingValue: Float
     var ratingCount: Int
     var new: Bool
+    var timestamp: Int64
     
     //MARK: Types
     struct PropertyKey {
@@ -27,6 +28,7 @@ class Beer: NSObject, NSCoding {
         static let ratingValue = "ratingValue"
         static let ratingCount = "ratingCount"
         static let new = "new"
+        static let timestamp = "timestamp"
     }
     
     //MARK: Archiving Paths
@@ -35,7 +37,7 @@ class Beer: NSObject, NSCoding {
 
     
     //MARK: Initialization
-    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool) {
+    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool, timestamp: Int64) {
         
         guard !brand.isEmpty && !type.isEmpty else {
             return nil
@@ -55,6 +57,7 @@ class Beer: NSObject, NSCoding {
         self.ratingValue = ratingValue
         self.ratingCount = ratingCount
         self.new = new
+        self.timestamp = timestamp
         
     }
     
@@ -66,7 +69,7 @@ class Beer: NSObject, NSCoding {
         aCoder.encode(ratingValue, forKey:PropertyKey.ratingValue)
         aCoder.encode(ratingCount, forKey:PropertyKey.ratingCount)
         aCoder.encode(new, forKey:PropertyKey.new)
-
+        aCoder.encode(timestamp, forKey: PropertyKey.timestamp)
     }
     
     // The convenience modifier means that this is a secondary initializer,
@@ -97,17 +100,16 @@ class Beer: NSObject, NSCoding {
         let ratingValue = aDecoder.decodeFloat(forKey: PropertyKey.ratingValue)
         let ratingCount = aDecoder.decodeInteger(forKey: PropertyKey.ratingCount)
         let new = aDecoder.decodeBool(forKey: PropertyKey.new)
+        let timestamp = aDecoder.decodeInt64(forKey: PropertyKey.timestamp)
 
         // Must call designated initializer.
-        self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue, ratingCount: ratingCount, new: new)
+        self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue, ratingCount: ratingCount, new: new, timestamp: timestamp)
     }
     
-    // Needed for comparison of two instances
+    // Needed for comparison of two instances but currently unused
     public static func ==(lhs: Beer, rhs: Beer) -> Bool{
         return
                 lhs.brand == rhs.brand &&
                 lhs.type == rhs.type
     }
-    
-
 }

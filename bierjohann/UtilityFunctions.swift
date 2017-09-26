@@ -1,5 +1,5 @@
 //
-//  extra_function.swift
+//  UtilityFunctions.swift
 //  bierjohann
 //
 //  Created by Kohler Manuel on 01.07.17.
@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 
 func extractString(s: String) -> String {
+    // expect s as <h3 class=\"slider__element--title\">Schlappeseppel </h3>    
     let rawString = s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
-    return rawString.trimmingCharacters(in: .whitespacesAndNewlines)
+    let cleanedString = replaceAmp(aString: rawString)
+    return cleanedString.trimmingCharacters(in: .whitespacesAndNewlines)
 }
 
 func get_timestamp() -> String {
@@ -30,8 +33,9 @@ func get_timestamp() -> String {
     return dateFormatter.string(from: d!)
 }
 
-func prepareStringForURLSearch (s: String) -> String{    
-    return s.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+func prepareStringForURLSearch (s: String) -> String{
+//    return s.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+    return s.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 }
 
 
@@ -63,3 +67,24 @@ func getURLSite(webaddress: String) -> String {
 }
 
 
+func replaceAmp(aString: String) -> String {
+    // dirty hack :-(
+    return aString.replacingOccurrences(of: "&amp;", with: "&", options: .literal, range: nil)
+}
+
+func replaceAmpForSearch(s: String) -> String {
+    return s.replacingOccurrences(of: "&", with: "%26", options: .literal, range: nil)
+}
+
+
+
+extension Date {
+    // Usage print(Date().secondsSince1970)
+    var secondsSince1970:Int64 {
+        return Int64((self.timeIntervalSince1970).rounded())
+    }
+    
+    init(seconds:Int64) {
+        self = Date(timeIntervalSince1970: TimeInterval(seconds))
+    }
+}

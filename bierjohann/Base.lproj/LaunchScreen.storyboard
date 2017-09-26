@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,15 +17,13 @@
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="center" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bierjohann_logo_claim.png" translatesAutoresizingMaskIntoConstraints="NO" id="z1f-RH-Jpd">
-                                <rect key="frame" x="0.0" y="20" width="268" height="460"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="z1f-RH-Jpd" secondAttribute="height" multiplier="80:137" id="NSw-e6-SeQ"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bierjohann_logo_claim.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1f-RH-Jpd">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bierjohann_logo_claim.png" width="380" height="389"/>
+        <image name="Bierjohann_logo_claim.png" width="150" height="154"/>
     </resources>
 </document>
