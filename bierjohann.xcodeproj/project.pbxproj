@@ -137,9 +137,9 @@
 				628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */,
 				624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */,
 				624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */,
+				62499E5B1F077D4800CC518B /* UtilityFunctions.swift */,
 				62A933FA1EF6E5430006934B /* Assets.xcassets */,
 				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
-				62499E5B1F077D4800CC518B /* UtilityFunctions.swift */,
 				62932A5E1F6C14CC001082B1 /* Info.plist */,
 			);
 			path = bierjohann;

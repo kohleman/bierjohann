@@ -47,10 +47,5 @@ class bierjohannTests: XCTestCase {
         
         let largeBrandRatingBeer = Beer.init(runningNumber: 1, brand: "", type: "Dolly", ratingValue: 6.0, ratingCount: 1, new: true, timestamp: 100000)
         XCTAssertNil(largeBrandRatingBeer)
-
-    }
-    
-    func testabc () {
-//        loadBeers()
     }
 }

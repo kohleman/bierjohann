@@ -1,6 +1,6 @@
-"Title" = "Piwa na Tab";
-"Updated" = "Aktualizacja";
-"Menu" = "Menu";
-"NoDataTitle" = "No data. Are you offline?";
-"Fetching" = "Ujmujący piva dane...";
-"RatingLabel" = "Ocena";
+"Title"= "Piwa z kija";
+"Updated"= "Zaktualizowano";
+"Menu"= "Menu";
+"NoDataTitle"= "Brak danych. Czy jesteś offline?";
+"RatingLabel"= "Ocena";
+"Fetching"= "Pobieranie danych o piwie...";
