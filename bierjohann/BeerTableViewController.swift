@@ -114,9 +114,9 @@ class BeerTableViewController: UITableViewController {
         
         // Just hide it for now...
         if (beer.ratingCount == 0) {
-            cell.ratingLabel.isHidden = true
-            cell.ratingValue.isHidden = true
-            cell.ratingCount.isHidden = true
+//            cell.ratingLabel.isHidden = true
+//            cell.ratingValue.isHidden = true
+//            cell.ratingCount.isHidden = true
         }
         
         cell.ratingValue.text = String(beer.ratingValue)

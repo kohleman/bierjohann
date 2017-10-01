@@ -39,15 +39,17 @@ class Beer: NSObject, NSCoding {
     //MARK: Initialization
     init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool, timestamp: Int64) {
         
-        guard !brand.isEmpty && !type.isEmpty else {
-            return nil
-        }
-        
+//        guard !brand.isEmpty && !type.isEmpty else {
+//            return nil
+//        }
+//        
         guard (ratingValue >= 0.0) && (ratingValue <= 5.0) else {
+            NSLog("Rating out of range!")
             return nil
         }
         
         guard (ratingCount >= 0) else {
+            NSLog("Rating count out of range!")
             return nil
         }
 

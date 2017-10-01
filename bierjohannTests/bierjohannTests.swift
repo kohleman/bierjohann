@@ -29,6 +29,17 @@ class bierjohannTests: XCTestCase {
 
         let positiveRatingBeer = Beer.init(runningNumber: 2, brand: "Braukollektiv", type: "Dolly", ratingValue: 5.0, ratingCount: 5000, new: true, timestamp: 100000)
         XCTAssertNotNil(positiveRatingBeer)
+        
+        let specialCharBeer = Beer.init(runningNumber: 88, brand: "Bräu Bö # $ @ ! ?", type: "Über & + * ()", ratingValue: 4.9, ratingCount: 50, new: true, timestamp: 100000)
+        XCTAssertNotNil(specialCharBeer)
+        
+        let specialChar2Beer = Beer.init(runningNumber: 88, brand: "Beer ñ", type: "le bié d`a", ratingValue: 4.9, ratingCount: 50, new: true, timestamp: 100000)
+        XCTAssertNotNil(specialChar2Beer)
+        
+        let emptyBeer = Beer.init(runningNumber: 88, brand: "", type: "", ratingValue: 4.9, ratingCount: 50, new: true, timestamp: 100000)
+        XCTAssertNotNil(emptyBeer)
+
+
     }
     
     func testBeerInitializationFails() {
