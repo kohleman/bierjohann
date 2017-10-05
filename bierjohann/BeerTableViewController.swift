@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import Apollo
 
 var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
 
@@ -31,8 +32,8 @@ class BeerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Load any saved beers, otherwise load data from website only
-        let savedBeers = loadBeers()
-        if (savedBeers.count > 0) {
+//        let savedBeers = loadBeers()
+        if let savedBeers = loadBeers() {
             beers = harvestBeers(savedBeers: savedBeers)
         }
         else {
@@ -42,12 +43,18 @@ class BeerTableViewController: UITableViewController {
             saveBeers(beers: beers)
         }
         
+        
+        
         setUpdatedLabel()
         addRefreshControl()
         
         RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
         RefreshButton.tintColor = bierjohann_brown
         RefreshButton.target = self
+    }
+    
+    func fetchBeerRatings () {
+//        let beerQueryv = beerRatingQuery()
     }
     
     func addRefreshControl () {
@@ -87,7 +94,7 @@ class BeerTableViewController: UITableViewController {
     @objc func beerRefresh(sender:AnyObject)
     {
         let savedBeers = loadBeers()
-        beers = harvestBeers(savedBeers: savedBeers)
+        beers = harvestBeers(savedBeers: savedBeers!)
         setUpdatedLabel()
         tableView.reloadData()
         self.refreshControl!.endRefreshing()
@@ -138,12 +145,9 @@ class BeerTableViewController: UITableViewController {
         }
         
         let encodedBrand = prepareStringForURLSearch(s: beer.brand)
-        let encodedType = prepareStringForURLSearch(s: replaceAmpForSearch(s: beer.type))
+        let encodedType = prepareStringForURLSearch(s: beer.type)
         
-        let cleanBrand = replaceAmpForSearch(s:encodedBrand)
-        let cleanType = replaceAmpForSearch(s: encodedType)
-        
-        guard let url = URL(string: googleSearchString + "\(cleanBrand  )+\(cleanType)") else {
+        guard let url = URL(string: googleSearchString + "\(encodedBrand  )+\(encodedType)") else {
             return //be safe
         }
         

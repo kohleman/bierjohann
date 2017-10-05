@@ -9,16 +9,43 @@
 import Foundation
 import UIKit
 import os.log
+import Apollo
 
 let dayInSeconds = 3600*24
 let myURLString = "https://www.bierjohann.ch/"
 
 
+//
+//let apollo: ApolloClient = {
+//    let configuration = URLSessionConfiguration.default
+//    // Add additional headers as needed
+//    configuration.httpAdditionalHeaders = ["x-api-key": ""]
+//    
+//    let url = URL(string: "https://api.r8.beer/v1/api/graphql/")!
+//    
+//    return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+//}()
+
+func callApollo () {
+//    apollo.fetch(query: beerRatingQuery)
+//    
+//    
+//    apollo.fetch(query: HeroAndFriendsNamesQuery(episode: .empire)) { (result, error) in
+//        guard let data = result?.data else { return }
+//        print(data.hero?.name) // Luke Skywalker
+//        print(data.hero?.friends?.flatMap { $0?.name }.joined(separator: ", "))
+//        // Prints: Han Solo, Leia Organa, C-3PO, R2-D2
+//    }
+
+}
+
+
+
 func extractString(s: String) -> String {
     // expect s as <h3 class=\"slider__element--title\">Schlappeseppel </h3>    
     let rawString = s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
-    let cleanedString = replaceAmp(aString: rawString)
-    return cleanedString.trimmingCharacters(in: .whitespacesAndNewlines)
+    let cleanedString = rawString.html2String
+    return cleanedString
 }
 
 func getTimestamp() -> String {
@@ -68,25 +95,10 @@ func getURLSite(webaddress: String) -> String {
     return (myHTMLString)
 }
 
-func replaceAmp(aString: String) -> String {
-    // dirty hack :-(
-    return aString.replacingOccurrences(of: "&amp;", with: "&", options: .literal, range: nil)
-}
 
-func replaceAmpForSearch(s: String) -> String {
-    return s.replacingOccurrences(of: "&", with: "%26", options: .literal, range: nil)
-}
 
-extension Date {
-    // Usage print(Date().secondsSince1970)
-    var secondsSince1970:Int64 {
-        return Int64((self.timeIntervalSince1970).rounded())
-    }
-    
-    init(seconds:Int64) {
-        self = Date(timeIntervalSince1970: TimeInterval(seconds))
-    }
-}
+
+
 
 func saveBeers(beers: [Beer]) {
     let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(beers, toFile: Beer.ArchiveURL.path)
@@ -103,8 +115,15 @@ func saveBeers(beers: [Beer]) {
     
 }
 
-func loadBeers() -> [Beer] {
-    return (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
+func loadBeers() -> [Beer]? {
+    
+    let fileExists = FileManager().fileExists(atPath: Beer.ArchiveURL.path)
+    if fileExists {
+        return (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
+    }
+    else {
+        return [Beer]()
+    }
 }
 
 func extractBeers(webaddress: String) -> [Beer]{
@@ -181,7 +200,7 @@ func harvestBeers(savedBeers: [Beer]) -> [Beer]{
     print("Got \(beers.count) beers.")
 
     let savedBeers = loadBeers()
-    _ = diffBeers(savedBeers: savedBeers, newBeers: beers)
+    _ = diffBeers(savedBeers: savedBeers!, newBeers: beers)
     saveBeers(beers: beers)
     return beers
 }
