@@ -23,6 +23,8 @@ class BeerTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingCount: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var newLabel: UILabel!
+    @IBOutlet weak var countryCodeLabel: UILabel!
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

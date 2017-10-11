@@ -14,6 +14,12 @@
 		626F05CC1F7A976000753621 /* BeerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */; };
 		626F05CE1F7A977E00753621 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6282B34E1F7137CB00E1AD18 /* Beer.swift */; };
 		626F05CF1F7A982A00753621 /* BeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */; };
+		6273095F1F8E19AB00DF2A76 /* rateBeerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */; };
+		627309601F8E19AC00DF2A76 /* rateBeerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */; };
+		627309631F8E277000DF2A76 /* createApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* createApolloClient.swift */; };
+		627309641F8E277100DF2A76 /* createApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* createApolloClient.swift */; };
+		627309651F8E8DCB00DF2A76 /* Apollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; };
+		6273096B1F8EAD2700DF2A76 /* Apollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62932A7F1F6C1BA4001082B1 /* Bierjohann_logo_claim.png in Resources */ = {isa = PBXBuildFile; fileRef = 62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */; };
 		62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A933F31EF6E5430006934B /* AppDelegate.swift */; };
 		62A933F91EF6E5430006934B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A933F71EF6E5430006934B /* Main.storyboard */; };
@@ -23,10 +29,23 @@
 		62A934141EF6E5430006934B /* bierjohannUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A934131EF6E5430006934B /* bierjohannUITests.swift */; };
 		62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B91F3F1F6BDEA40077A288 /* Localizable.strings */; };
 		62D630A11F86883200E9087C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D630A01F86883200E9087C /* Extensions.swift */; };
-		62DE0F141F85028200EA4F29 /* graphql in Resources */ = {isa = PBXBuildFile; fileRef = 62DE0F131F85028200EA4F29 /* graphql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		627309681F8EACBD00DF2A76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62DE0EF61F84FEB300EA4F29 /* Apollo.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FC750431D2A532C00458D91;
+			remoteInfo = Apollo;
+		};
+		6273096C1F8EAD2700DF2A76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62DE0EF61F84FEB300EA4F29 /* Apollo.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FC750431D2A532C00458D91;
+			remoteInfo = Apollo;
+		};
 		62A934051EF6E5430006934B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 62A933E81EF6E5420006934B /* Project object */;
@@ -99,11 +118,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6273096E1F8EAD2700DF2A76 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6273096B1F8EAD2700DF2A76 /* Apollo.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		623F1FD91F79630400FBA285 /* UtilityFunctionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctionsTests.swift; sourceTree = "<group>"; };
 		62499E5B1F077D4800CC518B /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
+		627309591F8E16E400DF2A76 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphql; sourceTree = "<group>"; };
+		6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = rateBeerAPI.swift; path = resources/graphql/rateBeerAPI.swift; sourceTree = "<group>"; };
+		627309611F8E26D600DF2A76 /* createApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createApolloClient.swift; sourceTree = "<group>"; };
 		6282B34E1F7137CB00E1AD18 /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		629056BE1F6D3D4B00E66877 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Info.plist; sourceTree = "<group>"; };
@@ -130,7 +166,6 @@
 		62D09EA11F6A80F6009ED355 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		62D630A01F86883200E9087C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		62DE0EF61F84FEB300EA4F29 /* Apollo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Apollo.xcodeproj; path = "../apollo-ios/Apollo.xcodeproj"; sourceTree = "<group>"; };
-		62DE0F131F85028200EA4F29 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				627309651F8E8DCB00DF2A76 /* Apollo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +205,7 @@
 		62932A811F6C1D22001082B1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				62DE0F131F85028200EA4F29 /* graphql */,
+				627309591F8E16E400DF2A76 /* graphql */,
 				62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */,
 			);
 			path = resources;
@@ -209,6 +245,8 @@
 				624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */,
 				624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */,
 				62499E5B1F077D4800CC518B /* UtilityFunctions.swift */,
+				627309611F8E26D600DF2A76 /* createApolloClient.swift */,
+				6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */,
 				62A933FA1EF6E5430006934B /* Assets.xcassets */,
 				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
 				62932A5E1F6C14CC001082B1 /* Info.plist */,
@@ -262,10 +300,13 @@
 				62A933EC1EF6E5420006934B /* Sources */,
 				62A933ED1EF6E5420006934B /* Frameworks */,
 				62A933EE1EF6E5420006934B /* Resources */,
+				6273096E1F8EAD2700DF2A76 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				627309691F8EACBD00DF2A76 /* PBXTargetDependency */,
+				6273096D1F8EAD2700DF2A76 /* PBXTargetDependency */,
 			);
 			name = bierjohann;
 			productName = bierjohann;
@@ -432,7 +473,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62DE0F141F85028200EA4F29 /* graphql in Resources */,
 				62A933FE1EF6E5430006934B /* LaunchScreen.storyboard in Resources */,
 				62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */,
 				62A933FB1EF6E5430006934B /* Assets.xcassets in Resources */,
@@ -468,11 +508,11 @@
 			);
 			name = "Generate Apollo GraphQL API";
 			outputPaths = (
-				" /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/API.swift",
+				" /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/rateBeerAPI.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/schema.json --output /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/API.swift";
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate $(find /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/ -name '*.graphql') --schema /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/schema.json --output /Users/kohleman/Documents/iOS_Playground/bierjohann/bierjohann/resources/graphql/rateBeerAPI.swift";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -481,6 +521,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6273095F1F8E19AB00DF2A76 /* rateBeerAPI.swift in Sources */,
+				627309631F8E277000DF2A76 /* createApolloClient.swift in Sources */,
 				62499E5C1F077D4800CC518B /* UtilityFunctions.swift in Sources */,
 				626F05CC1F7A976000753621 /* BeerTableViewController.swift in Sources */,
 				626F05CB1F7A975A00753621 /* Beer.swift in Sources */,
@@ -495,9 +537,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				62A934091EF6E5430006934B /* bierjohannTests.swift in Sources */,
+				627309641F8E277100DF2A76 /* createApolloClient.swift in Sources */,
 				623F1FDA1F79630400FBA285 /* UtilityFunctionsTests.swift in Sources */,
 				626F05C61F7A947500753621 /* UtilityFunctions.swift in Sources */,
 				626F05CE1F7A977E00753621 /* Beer.swift in Sources */,
+				627309601F8E19AC00DF2A76 /* rateBeerAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +556,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		627309691F8EACBD00DF2A76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Apollo;
+			targetProxy = 627309681F8EACBD00DF2A76 /* PBXContainerItemProxy */;
+		};
+		6273096D1F8EAD2700DF2A76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Apollo;
+			targetProxy = 6273096C1F8EAD2700DF2A76 /* PBXContainerItemProxy */;
+		};
 		62A934061EF6E5430006934B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 62A933EF1EF6E5420006934B /* bierjohann */;
@@ -681,6 +735,7 @@
 		62A934191EF6E5430006934B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -700,6 +755,7 @@
 		62A9341A1EF6E5430006934B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

@@ -75,7 +75,7 @@
                                             <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVE-YX-xhw">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVE-YX-xhw">
                                             <rect key="frame" x="285" y="8" width="25" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -95,6 +95,7 @@
                                     <outlet property="NewLabel" destination="Cl6-AI-lSo" id="RL4-fi-rTU"/>
                                     <outlet property="RatingLabel" destination="tTk-zZ-XQu" id="mCt-wV-1wx"/>
                                     <outlet property="brandLabel" destination="1TC-KV-S9n" id="MVL-Ip-AWn"/>
+                                    <outlet property="countryCodeLabel" destination="uOZ-hL-7c1" id="JhW-Bn-6Ck"/>
                                     <outlet property="nameLabel" destination="Rkp-Dq-WJC" id="Ied-nl-8iO"/>
                                     <outlet property="numberLabel" destination="ItB-Ds-hVE" id="WKo-3p-i5V"/>
                                     <outlet property="ratingCount" destination="Ooj-X2-4bc" id="jpe-UV-Zqr"/>
@@ -143,34 +144,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2017 Manuel Kohler" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-UR-T4g">
-                                <rect key="frame" x="16" y="64" width="250" height="21"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thanks to Dr. Hyojin Kim and Julian Sikorski for their help. Also thanks to bierjohann.ch" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlc-48-Kce">
-                                <rect key="frame" x="16" y="135" width="250" height="76"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJC-wc-Bsr">
+                                <rect key="frame" x="16" y="64" width="331" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DISCLAIMER: Ratings and beer meta data is provided by ratebeer.com Beers are provided by bierjohann.ch" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vum-GL-8gT">
-                                <rect key="frame" x="16" y="244" width="250" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">© 2017 Manuel Kohler  Thanks to Dr. Hyojin Kim and Julian Sikorski for their help.  DISCLAIMER:  Ratings are provided by:  https://www.ratebeer.com/ RateBeer, LLC
+P.O. Box 475
+Fulton, CA 95439
+United States of America  Beers are provided by:  https://www.bierjohann.ch/ Zum Bierjohann Elsässerstrasse 17
+CH-4056 Basel  bier@bierjohann.ch +41 61 5544644</string>
                                 <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSt-po-V5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812.5" y="-86.25"/>
+            <point key="canvasLocation" x="2812.5" y="-86.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="Pqt-0F-NnT">

@@ -1,0 +1,20 @@
+query beerRating ($q: String){
+beerSearch(query: $q) {
+items {
+id
+name
+brewer {
+id
+name
+country {
+id
+code
+}
+}
+averageRating
+ratingCount
+}
+}
+}
+
+

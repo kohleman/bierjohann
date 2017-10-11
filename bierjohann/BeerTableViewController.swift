@@ -42,9 +42,7 @@ class BeerTableViewController: UITableViewController {
             beers = extractBeers(webaddress: myURLString)
             saveBeers(beers: beers)
         }
-        
-        
-        
+
         setUpdatedLabel()
         addRefreshControl()
         
@@ -53,9 +51,6 @@ class BeerTableViewController: UITableViewController {
         RefreshButton.target = self
     }
     
-    func fetchBeerRatings () {
-//        let beerQueryv = beerRatingQuery()
-    }
     
     func addRefreshControl () {
         self.refreshControl = UIRefreshControl()
@@ -113,23 +108,39 @@ class BeerTableViewController: UITableViewController {
         
         cell.ratingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
         
-        let beer = beers[indexPath.row]
+        var beer = beers[indexPath.row]
 
         cell.numberLabel.text = String(beer.runningNumber)
         cell.brandLabel.text = beer.brand
         cell.nameLabel.text = beer.type
+
+        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
+        beer = testApollo(searchString: searchString, beer: beer)
+        print(flag(country: beer.countryCode))
+        cell.countryCodeLabel.text = flag(country: beer.countryCode)
         
-        // Just hide it for now...
         if (beer.ratingCount == 0) {
-//            cell.ratingLabel.isHidden = true
-//            cell.ratingValue.isHidden = true
-//            cell.ratingCount.isHidden = true
+            cell.ratingLabel.isHidden = true
+            cell.ratingValue.isHidden = true
+            cell.ratingCount.isHidden = true
+            cell.countryCodeLabel.isHidden = true
         }
+        else {
+            cell.ratingLabel.isHidden = false
+            cell.ratingValue.isHidden = false
+            cell.ratingCount.isHidden = false
+            cell.countryCodeLabel.isHidden = false
+        }
+        
+        cell.nameLabel.adjustsFontSizeToFitWidth = true
+        cell.nameLabel.minimumScaleFactor = 0.5
+
         
         cell.ratingValue.text = String(beer.ratingValue)
         cell.ratingCount.text = String(beer.ratingCount)
         
         cell.newLabel.isHidden = beer.new
+        
         return cell
     }
     

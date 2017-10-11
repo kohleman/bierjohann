@@ -15,30 +15,28 @@ let dayInSeconds = 3600*24
 let myURLString = "https://www.bierjohann.ch/"
 
 
-//
-//let apollo: ApolloClient = {
-//    let configuration = URLSessionConfiguration.default
-//    // Add additional headers as needed
-//    configuration.httpAdditionalHeaders = ["x-api-key": ""]
-//    
-//    let url = URL(string: "https://api.r8.beer/v1/api/graphql/")!
-//    
-//    return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
-//}()
-
-func callApollo () {
-//    apollo.fetch(query: beerRatingQuery)
-//    
-//    
-//    apollo.fetch(query: HeroAndFriendsNamesQuery(episode: .empire)) { (result, error) in
-//        guard let data = result?.data else { return }
-//        print(data.hero?.name) // Luke Skywalker
-//        print(data.hero?.friends?.flatMap { $0?.name }.joined(separator: ", "))
-//        // Prints: Han Solo, Leia Organa, C-3PO, R2-D2
-//    }
-
+func testApollo(searchString: String, beer: Beer) -> Beer{
+    let apollo = createApolloClient()
+    
+    apollo.fetch(query: BeerRatingQuery(q: searchString)) { (result, error) in
+        guard let data = result?.data else { return }
+        
+        if (data.beerSearch?.items.isEmpty == false) {
+            print(data.beerSearch?.items[0]?.name ?? "not existent")
+//            print(data.beerSearch?.items[0]?.averageRating ?? "not existent")
+//            print(data.beerSearch?.items[0]?.ratingCount)
+//            print(data.beerSearch?.items[0]?.brewer?.country?.code ?? "Help me!")
+            
+            beer.ratingValue = Float((data.beerSearch?.items[0]?.averageRating)!)
+            beer.ratingCount = (data.beerSearch?.items[0]?.ratingCount)!
+            beer.countryCode = (data.beerSearch?.items[0]?.brewer?.country?.code)!
+            
+            print((data.beerSearch?.items[0]?.brewer?.country?.code)!)
+            
+        }
+    }
+    return beer
 }
-
 
 
 func extractString(s: String) -> String {
@@ -144,7 +142,8 @@ func extractBeers(webaddress: String) -> [Beer]{
         if line.contains("slider__element--text") {
             aName = extractString(s: line)
             
-            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0) else {
+            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0,
+                                   new: true, timestamp: 0, countryCode: "") else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
             beers.append(aBeer)
@@ -204,3 +203,14 @@ func harvestBeers(savedBeers: [Beer]) -> [Beer]{
     saveBeers(beers: beers)
     return beers
 }
+
+// Country Code to Emoji flag
+func flag(country:String) -> String {
+    let base : UInt32 = 127397
+    var s = ""
+    for v in country.unicodeScalars {
+        s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+    }
+    return String(s)
+}
+

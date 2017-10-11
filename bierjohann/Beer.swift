@@ -19,6 +19,7 @@ class Beer: NSObject, NSCoding {
     var ratingCount: Int
     var new: Bool
     var timestamp: Int64
+    var countryCode: String
     
     //MARK: Types
     struct PropertyKey {
@@ -29,6 +30,7 @@ class Beer: NSObject, NSCoding {
         static let ratingCount = "ratingCount"
         static let new = "new"
         static let timestamp = "timestamp"
+        static let countryCode = "countryCode"
     }
     
     //MARK: Archiving Paths
@@ -37,7 +39,8 @@ class Beer: NSObject, NSCoding {
 
     
     //MARK: Initialization
-    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool, timestamp: Int64) {
+    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool,
+          timestamp: Int64, countryCode: String) {
         
 //        guard !brand.isEmpty && !type.isEmpty else {
 //            return nil
@@ -60,6 +63,7 @@ class Beer: NSObject, NSCoding {
         self.ratingCount = ratingCount
         self.new = new
         self.timestamp = timestamp
+        self.countryCode = countryCode
         
     }
     
@@ -72,6 +76,7 @@ class Beer: NSObject, NSCoding {
         aCoder.encode(ratingCount, forKey:PropertyKey.ratingCount)
         aCoder.encode(new, forKey:PropertyKey.new)
         aCoder.encode(timestamp, forKey: PropertyKey.timestamp)
+        aCoder.encode(countryCode, forKey: PropertyKey.countryCode)
     }
     
     // The convenience modifier means that this is a secondary initializer,
@@ -92,7 +97,7 @@ class Beer: NSObject, NSCoding {
         
         guard let type = aDecoder.decodeObject(forKey: PropertyKey.type) as? String else {
             if #available(iOS 10.0, *) {
-                os_log("Unable to decode the name for a Beer object.", log: OSLog.default, type: .debug)
+                os_log("Unable to decode the type for a Beer object.", log: OSLog.default, type: .debug)
             } else {
                 // Fallback on earlier versions
             }
@@ -104,8 +109,18 @@ class Beer: NSObject, NSCoding {
         let new = aDecoder.decodeBool(forKey: PropertyKey.new)
         let timestamp = aDecoder.decodeInt64(forKey: PropertyKey.timestamp)
 
+        guard let countryCode = aDecoder.decodeObject(forKey: PropertyKey.countryCode) as? String else {
+            if #available(iOS 10.0, *) {
+                os_log("Unable to decode the countryCode for a Beer object.", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
+            return nil
+        }
+
         // Must call designated initializer.
-        self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue, ratingCount: ratingCount, new: new, timestamp: timestamp)
+        self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue,
+                  ratingCount: ratingCount, new: new, timestamp: timestamp, countryCode: countryCode)
     }
     
     // Needed for comparison of two instances but currently unused
