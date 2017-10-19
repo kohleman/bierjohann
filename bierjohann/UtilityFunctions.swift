@@ -123,18 +123,22 @@ func saveBeers(beers: [Beer]) {
 }
 
 func loadBeers() -> [Beer]? {
-
-    os_log("Loading Beers from local file.", log: OSLog.default, type: .debug)
     
     let fileExists = FileManager().fileExists(atPath: Beer.ArchiveURL.path)
     if fileExists {
         if !checkAppUpgraded() {
+            os_log("Loading beers from local file.", log: OSLog.default, type: .debug)
             let beerList = (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
             return beerList
         }
+        else {
+            os_log("Not loading beers from local file. App got upgraded", log: OSLog.default, type: .debug)
+        }
+    }
+    else {
+        os_log("First time run.", log: OSLog.default, type: .debug)
     }
     
-    os_log("Either first time run or app got upgraded.", log: OSLog.default, type: .debug)
     return [Beer]()
 }
 
@@ -157,7 +161,7 @@ func extractBeers(webaddress: String) -> [Beer]{
             aName = extractString(s: line)
             
             guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0,
-                                   new: true, timestamp: 0, abv: 0.0, style: "") else {
+                                   new: true, timestamp: 0, abv: 0.0, style: "", more: "") else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
             beers.append(aBeer)

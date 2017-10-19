@@ -23,10 +23,10 @@ class Beer: NSObject, NSCoding {
     var countryCode = ""
     var abv = 0.0
     var style = ""
+    var more = ""
     
 
-    
-    //MARK: Types
+    //MARK: Types, needed for NSCoding
     struct PropertyKey {
         static let runningNumber = "runningNumber"
         static let brand = "brand"
@@ -38,6 +38,7 @@ class Beer: NSObject, NSCoding {
         static let countryCode = "countryCode"
         static let abv = "abv"
         static let style = "style"
+        static let more = "more"
     }
     
     //MARK: Archiving Paths
@@ -48,7 +49,7 @@ class Beer: NSObject, NSCoding {
     //MARK: Initialization
         
     init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool,
-          timestamp: Int64, abv: Double, style: String) {
+          timestamp: Int64, abv: Double, style: String, more: String) {
         
 //        guard !brand.isEmpty && !type.isEmpty else {
 //            return nil
@@ -74,6 +75,7 @@ class Beer: NSObject, NSCoding {
 //        self.countryCode = countryCode
         self.abv = abv
         self.style = ""
+        self.more = ""
         
     }
     
@@ -89,6 +91,7 @@ class Beer: NSObject, NSCoding {
         aCoder.encode(countryCode, forKey: PropertyKey.countryCode)
         aCoder.encode(abv, forKey: PropertyKey.abv)
         aCoder.encode(style, forKey: PropertyKey.style)
+        aCoder.encode(more, forKey: PropertyKey.more)
     }
     
     // The convenience modifier means that this is a secondary initializer,
@@ -140,10 +143,20 @@ class Beer: NSObject, NSCoding {
             }
             return nil
         }
+        
+        guard let more = aDecoder.decodeObject(forKey: PropertyKey.more) as? String else {
+            if #available(iOS 10.0, *) {
+                os_log("Unable to decode the style for a Beer object.", log: OSLog.default, type: .debug)
+            } else {
+                // Fallback on earlier versions
+            }
+            return nil
+        }
+
 
         // Must call designated initializer.
         self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue,
-                  ratingCount: ratingCount, new: new, timestamp: timestamp, abv: abv, style: style)
+                  ratingCount: ratingCount, new: new, timestamp: timestamp, abv: abv, style: style, more: more)
     }
     
     // Needed for comparison of two instances but currently unused
