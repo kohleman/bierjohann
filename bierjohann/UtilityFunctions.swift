@@ -6,6 +6,15 @@
 //  Copyright © 2017 Kohler  Manuel. All rights reserved.
 //
 
+// For variable interpolation in os_log
+// defined here:
+//https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
+//For Strings u use %@
+//For int  u use %i
+//For float u use %f
+//For double u use %lf
+
+
 import Foundation
 import UIKit
 import os.log
@@ -15,6 +24,7 @@ let dayInSeconds = 3600*24
 let myURLString = "https://www.bierjohann.ch/"
 
 
+// Currently not used
 func testApollo(searchString: String, beer: Beer) -> Beer{
     let apollo = createApolloClient()
     
@@ -23,9 +33,9 @@ func testApollo(searchString: String, beer: Beer) -> Beer{
         
         if (data.beerSearch?.items.isEmpty == false) {
             print(data.beerSearch?.items[0]?.name ?? "not existent")
-//            print(data.beerSearch?.items[0]?.averageRating ?? "not existent")
-//            print(data.beerSearch?.items[0]?.ratingCount)
-//            print(data.beerSearch?.items[0]?.brewer?.country?.code ?? "Help me!")
+            //print(data.beerSearch?.items[0]?.averageRating ?? "not existent")
+            //print(data.beerSearch?.items[0]?.ratingCount)
+            //print(data.beerSearch?.items[0]?.brewer?.country?.code ?? "Help me!")
             
             beer.ratingValue = Float((data.beerSearch?.items[0]?.averageRating)!)
             beer.ratingCount = (data.beerSearch?.items[0]?.ratingCount)!
@@ -46,6 +56,7 @@ func extractString(s: String) -> String {
     return cleanedString
 }
 
+
 func getTimestamp() -> String {
     let dateFormatter = DateFormatter()
     // not hardcoded, use the localized style
@@ -60,8 +71,8 @@ func getTimestamp() -> String {
     return dateFormatter.string(from: d!)
 }
 
+
 func prepareStringForURLSearch (s: String) -> String{
-//    return s.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     return s.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 }
 
@@ -71,31 +82,29 @@ func getURLSite(webaddress: String) -> String {
     var myHTMLString: String = ""
     
     guard let myURL = URL(string: webaddress) else {
-        print("Error: \(webaddress) doesn't seem to be a valid URL")
+        os_log("Error: %@ doesn't seem to be a valid URL", log: OSLog.default, type: .debug, webaddress)
         return ("")
     }
     
     let myGroup = DispatchGroup()
     
     do {
-        print("Do some async work...")
+        os_log("Do some async work...", log: OSLog.default, type: .debug)
+
         myGroup.enter()
         myHTMLString = try String(contentsOf: myURL, encoding: .utf8)
     }
     catch let error {
-        print("Error: \(error)")
+        os_log("Error: %@", log: OSLog.default, type: .debug, error as CVarArg)
+
     }
     myGroup.leave()
     myGroup.notify(queue: .main) {
-        print("Finished all requests.")
+        os_log("Finished all requests.", log: OSLog.default, type: .debug)
     }
     
     return (myHTMLString)
 }
-
-
-
-
 
 
 func saveBeers(beers: [Beer]) {
@@ -114,14 +123,19 @@ func saveBeers(beers: [Beer]) {
 }
 
 func loadBeers() -> [Beer]? {
+
+    os_log("Loading Beers from local file.", log: OSLog.default, type: .debug)
     
     let fileExists = FileManager().fileExists(atPath: Beer.ArchiveURL.path)
     if fileExists {
-        return (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
+        if !checkAppUpgraded() {
+            let beerList = (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
+            return beerList
+        }
     }
-    else {
-        return [Beer]()
-    }
+    
+    os_log("Either first time run or app got upgraded.", log: OSLog.default, type: .debug)
+    return [Beer]()
 }
 
 func extractBeers(webaddress: String) -> [Beer]{
@@ -143,7 +157,7 @@ func extractBeers(webaddress: String) -> [Beer]{
             aName = extractString(s: line)
             
             guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0,
-                                   new: true, timestamp: 0, countryCode: "") else {
+                                   new: true, timestamp: 0, abv: 0.0, style: "") else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
             beers.append(aBeer)
@@ -156,16 +170,12 @@ func extractBeers(webaddress: String) -> [Beer]{
 
 func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
     
-    //        beers[3].brand = "Beer4"
-    //        beers[3].type = "T4"
-    //        beers[3].timestamp = 1506438938 + 30000
-    
     let now = Date().secondsSince1970
     
     let timeIndex = zip(newBeers, savedBeers).enumerated().filter() {
         (now - $1.1.timestamp) < dayInSeconds
         }.map{$0.0}
-    
+
     if (timeIndex.count > 0) {
         print("Beer with new timestamp found \(timeIndex)")
     }
@@ -196,13 +206,14 @@ func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
 func harvestBeers(savedBeers: [Beer]) -> [Beer]{
     var beers = [Beer]()
     beers = extractBeers(webaddress: myURLString)
-    print("Got \(beers.count) beers.")
-
-    let savedBeers = loadBeers()
-    _ = diffBeers(savedBeers: savedBeers!, newBeers: beers)
+    
+    os_log("Got %i beers.", log: OSLog.default, type: .debug, beers.count)
+    
+    _ = diffBeers(savedBeers: savedBeers, newBeers: beers)
     saveBeers(beers: beers)
     return beers
 }
+
 
 // Country Code to Emoji flag
 func flag(country:String) -> String {
@@ -213,4 +224,40 @@ func flag(country:String) -> String {
     }
     return String(s)
 }
+
+
+func checkAppUpgraded() -> Bool {
+    let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    let versionOfLastRun = UserDefaults.standard.object(forKey: "VersionOfLastRun") as? String
+    
+    os_log("Current App Version :%@", log: OSLog.default, type: .debug, currentVersion ?? "unknown")
+    os_log("App Version on last run: %@", log: OSLog.default, type: .debug, versionOfLastRun ?? "unknown")
+
+    var returnValue = false
+    
+    if versionOfLastRun == nil {
+        // First start after installing the app
+        
+    } else if versionOfLastRun != currentVersion {
+        // App was updated since last run
+        returnValue = true
+        
+    } else {
+        // nothing changed
+        returnValue = false
+        
+    }
+    
+    UserDefaults.standard.set(currentVersion, forKey: "VersionOfLastRun")
+    UserDefaults.standard.synchronize()
+
+    return returnValue
+}
+
+
+// Template: how to see the caller of a function
+func debug(file: String = #file, line: Int = #line, function: String = #function) -> String {
+    return "\(file):\(line) : \(function)"
+}
+
 

@@ -11,6 +11,7 @@ import os.log
 import Apollo
 
 var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
+let googleSearchString = "https://www.google.com/search?q="
 
 
 class BeerTableViewController: UITableViewController {
@@ -20,7 +21,6 @@ class BeerTableViewController: UITableViewController {
     
     let BierJohannName = "Bierjohann"
     let cellIdentifier = "BeerTableViewCell"
-    let googleSearchString = "https://www.google.com/search?q="
     
     @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -32,13 +32,12 @@ class BeerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Load any saved beers, otherwise load data from website only
-//        let savedBeers = loadBeers()
         if let savedBeers = loadBeers() {
             beers = harvestBeers(savedBeers: savedBeers)
         }
         else {
             // Loading data for the first time
-            print("Loading beers for the first time.")
+            os_log("Loading beers for the first time.", log:OSLog.default, type: .debug)
             beers = extractBeers(webaddress: myURLString)
             saveBeers(beers: beers)
         }
@@ -80,7 +79,7 @@ class BeerTableViewController: UITableViewController {
             return 1
         }
         else {
-            print("No data...")
+            os_log("Oops... No data.", log:OSLog.default, type: .debug)
             HeaderUINavigationItem.title = NSLocalizedString("NoDataTitle", comment: "Data loading failed")
             return 0
         }
@@ -108,18 +107,18 @@ class BeerTableViewController: UITableViewController {
         
         cell.ratingLabel.text = NSLocalizedString("RatingLabel", comment: "Translation for the Rating Label")
         
-        var beer = beers[indexPath.row]
+        let beer = beers[indexPath.row]
 
         cell.numberLabel.text = String(beer.runningNumber)
         cell.brandLabel.text = beer.brand
         cell.nameLabel.text = beer.type
 
-        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
-        beer = testApollo(searchString: searchString, beer: beer)
-        print(flag(country: beer.countryCode))
-        cell.countryCodeLabel.text = flag(country: beer.countryCode)
+//        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
+//        beer = testApollo(searchString: searchString, beer: beer)
+//        print(flag(country: beer.countryCode))
+//        cell.countryCodeLabel.text = flag(country: beer.countryCode)
         
-        if (beer.ratingCount == 0) {
+            if (beer.ratingCount == 0) {
             cell.ratingLabel.isHidden = true
             cell.ratingValue.isHidden = true
             cell.ratingCount.isHidden = true
@@ -135,7 +134,6 @@ class BeerTableViewController: UITableViewController {
         cell.nameLabel.adjustsFontSizeToFitWidth = true
         cell.nameLabel.minimumScaleFactor = 0.5
 
-        
         cell.ratingValue.text = String(beer.ratingValue)
         cell.ratingCount.text = String(beer.ratingCount)
         
