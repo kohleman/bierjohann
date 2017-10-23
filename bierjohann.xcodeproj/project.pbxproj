@@ -16,11 +16,13 @@
 		626F05CF1F7A982A00753621 /* BeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */; };
 		6273095F1F8E19AB00DF2A76 /* rateBeerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */; };
 		627309601F8E19AC00DF2A76 /* rateBeerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */; };
-		627309631F8E277000DF2A76 /* createApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* createApolloClient.swift */; };
-		627309641F8E277100DF2A76 /* createApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* createApolloClient.swift */; };
+		627309631F8E277000DF2A76 /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* ApolloClient.swift */; };
+		627309641F8E277100DF2A76 /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627309611F8E26D600DF2A76 /* ApolloClient.swift */; };
 		627309651F8E8DCB00DF2A76 /* Apollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; };
 		6273096B1F8EAD2700DF2A76 /* Apollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62932A7F1F6C1BA4001082B1 /* Bierjohann_logo_claim.png in Resources */ = {isa = PBXBuildFile; fileRef = 62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */; };
+		629F0CBA1F9E410400DE986A /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F0CB91F9E410400DE986A /* InfoTableViewController.swift */; };
+		629F0CBB1F9E410400DE986A /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F0CB91F9E410400DE986A /* InfoTableViewController.swift */; };
 		62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A933F31EF6E5430006934B /* AppDelegate.swift */; };
 		62A933F91EF6E5430006934B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A933F71EF6E5430006934B /* Main.storyboard */; };
 		62A933FB1EF6E5430006934B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62A933FA1EF6E5430006934B /* Assets.xcassets */; };
@@ -29,6 +31,16 @@
 		62A934141EF6E5430006934B /* bierjohannUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A934131EF6E5430006934B /* bierjohannUITests.swift */; };
 		62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B91F3F1F6BDEA40077A288 /* Localizable.strings */; };
 		62D630A11F86883200E9087C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D630A01F86883200E9087C /* Extensions.swift */; };
+		62F66AD11F9BAB0800395682 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AC61F9BAABD00395682 /* Obfuscator.swift */; };
+		62F66AD21F9BAB0900395682 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AC61F9BAABD00395682 /* Obfuscator.swift */; };
+		62F66AD41F9CCC1B00395682 /* NSActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AD31F9CCC1A00395682 /* NSActions.swift */; };
+		62F66AD51F9CCC1B00395682 /* NSActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AD31F9CCC1A00395682 /* NSActions.swift */; };
+		62F66ADB1F9CCF2100395682 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66ADA1F9CCF2100395682 /* Constants.swift */; };
+		62F66ADC1F9CCF2100395682 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66ADA1F9CCF2100395682 /* Constants.swift */; };
+		62F66ADE1F9CD2D700395682 /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66ADD1F9CD2D700395682 /* StringUtilities.swift */; };
+		62F66ADF1F9CD2D700395682 /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66ADD1F9CD2D700395682 /* StringUtilities.swift */; };
+		62F66AE11F9D50DC00395682 /* BeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AE01F9D50DC00395682 /* BeerViewController.swift */; };
+		62F66AE21F9D50DC00395682 /* BeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AE01F9D50DC00395682 /* BeerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,13 +151,14 @@
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
 		627309591F8E16E400DF2A76 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphql; sourceTree = "<group>"; };
 		6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = rateBeerAPI.swift; path = resources/graphql/rateBeerAPI.swift; sourceTree = "<group>"; };
-		627309611F8E26D600DF2A76 /* createApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createApolloClient.swift; sourceTree = "<group>"; };
+		627309611F8E26D600DF2A76 /* ApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloClient.swift; sourceTree = "<group>"; };
 		6282B34E1F7137CB00E1AD18 /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
-		628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		629056BE1F6D3D4B00E66877 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/Info.plist; sourceTree = "<group>"; };
 		629056C91F6D3D4B00E66877 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		62932A5E1F6C14CC001082B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62932A7E1F6C1BA4001082B1 /* Bierjohann_logo_claim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bierjohann_logo_claim.png; sourceTree = "<group>"; };
+		629F0CB91F9E410400DE986A /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoTableViewController.swift; path = bierjohann/InfoTableViewController.swift; sourceTree = "<group>"; };
+		629F0CBC1F9E410800DE986A /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		62A933F01EF6E5430006934B /* bierjohann.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bierjohann.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A933F31EF6E5430006934B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62A933F81EF6E5430006934B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,6 +179,11 @@
 		62D09EA11F6A80F6009ED355 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		62D630A01F86883200E9087C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		62DE0EF61F84FEB300EA4F29 /* Apollo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Apollo.xcodeproj; path = "../apollo-ios/Apollo.xcodeproj"; sourceTree = "<group>"; };
+		62F66AC61F9BAABD00395682 /* Obfuscator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obfuscator.swift; sourceTree = "<group>"; };
+		62F66AD31F9CCC1A00395682 /* NSActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSActions.swift; sourceTree = "<group>"; };
+		62F66ADA1F9CCF2100395682 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		62F66ADD1F9CD2D700395682 /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
+		62F66AE01F9D50DC00395682 /* BeerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +232,7 @@
 		62A933E71EF6E5420006934B = {
 			isa = PBXGroup;
 			children = (
+				629F0CB91F9E410400DE986A /* InfoTableViewController.swift */,
 				62A933F21EF6E5430006934B /* bierjohann */,
 				62A934071EF6E5430006934B /* bierjohannTests */,
 				62A934121EF6E5430006934B /* bierjohannUITests */,
@@ -240,16 +259,21 @@
 				62B91F3F1F6BDEA40077A288 /* Localizable.strings */,
 				62A933F31EF6E5430006934B /* AppDelegate.swift */,
 				62A933F71EF6E5430006934B /* Main.storyboard */,
+				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
+				62F66ADA1F9CCF2100395682 /* Constants.swift */,
+				62F66AC61F9BAABD00395682 /* Obfuscator.swift */,
 				6282B34E1F7137CB00E1AD18 /* Beer.swift */,
-				628F80A71F6DB00A0093BEE4 /* InfoTableViewController.swift */,
+				629F0CBC1F9E410800DE986A /* InfoTableViewController.swift */,
+				62F66AE01F9D50DC00395682 /* BeerViewController.swift */,
 				624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */,
 				624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */,
 				62499E5B1F077D4800CC518B /* UtilityFunctions.swift */,
-				627309611F8E26D600DF2A76 /* createApolloClient.swift */,
-				6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */,
+				62F66ADD1F9CD2D700395682 /* StringUtilities.swift */,
+				627309611F8E26D600DF2A76 /* ApolloClient.swift */,
 				62D630A01F86883200E9087C /* Extensions.swift */,
+				62F66AD31F9CCC1A00395682 /* NSActions.swift */,
+				6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */,
 				62A933FA1EF6E5430006934B /* Assets.xcassets */,
-				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
 				62932A5E1F6C14CC001082B1 /* Info.plist */,
 			);
 			path = bierjohann;
@@ -362,18 +386,16 @@
 					62A933EF1EF6E5420006934B = {
 						CreatedOnToolsVersion = 8.2.1;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					62A934031EF6E5430006934B = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 28L4SXWJY7;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 62A933EF1EF6E5420006934B;
 					};
 					62A9340E1EF6E5430006934B = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 28L4SXWJY7;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 62A933EF1EF6E5420006934B;
@@ -521,14 +543,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62F66AD41F9CCC1B00395682 /* NSActions.swift in Sources */,
+				62F66ADB1F9CCF2100395682 /* Constants.swift in Sources */,
 				6273095F1F8E19AB00DF2A76 /* rateBeerAPI.swift in Sources */,
-				627309631F8E277000DF2A76 /* createApolloClient.swift in Sources */,
+				627309631F8E277000DF2A76 /* ApolloClient.swift in Sources */,
+				62F66AD11F9BAB0800395682 /* Obfuscator.swift in Sources */,
 				62499E5C1F077D4800CC518B /* UtilityFunctions.swift in Sources */,
 				626F05CC1F7A976000753621 /* BeerTableViewController.swift in Sources */,
+				629F0CBA1F9E410400DE986A /* InfoTableViewController.swift in Sources */,
+				62F66ADE1F9CD2D700395682 /* StringUtilities.swift in Sources */,
 				626F05CB1F7A975A00753621 /* Beer.swift in Sources */,
 				62A933F41EF6E5430006934B /* AppDelegate.swift in Sources */,
 				626F05CF1F7A982A00753621 /* BeerTableViewCell.swift in Sources */,
 				62D630A11F86883200E9087C /* Extensions.swift in Sources */,
+				62F66AE11F9D50DC00395682 /* BeerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,11 +565,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				62A934091EF6E5430006934B /* bierjohannTests.swift in Sources */,
-				627309641F8E277100DF2A76 /* createApolloClient.swift in Sources */,
+				62F66ADF1F9CD2D700395682 /* StringUtilities.swift in Sources */,
+				62F66AE21F9D50DC00395682 /* BeerViewController.swift in Sources */,
+				629F0CBB1F9E410400DE986A /* InfoTableViewController.swift in Sources */,
+				627309641F8E277100DF2A76 /* ApolloClient.swift in Sources */,
 				623F1FDA1F79630400FBA285 /* UtilityFunctionsTests.swift in Sources */,
 				626F05C61F7A947500753621 /* UtilityFunctions.swift in Sources */,
+				62F66AD51F9CCC1B00395682 /* NSActions.swift in Sources */,
 				626F05CE1F7A977E00753621 /* Beer.swift in Sources */,
 				627309601F8E19AC00DF2A76 /* rateBeerAPI.swift in Sources */,
+				62F66AD21F9BAB0900395682 /* Obfuscator.swift in Sources */,
+				62F66ADC1F9CCF2100395682 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,14 +772,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = "$(SRCROOT)/bierjohann/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4d2e9c44-391e-4aaf-8a2e-664c4c37009e";
+				PROVISIONING_PROFILE_SPECIFIER = "Bierjohann Dev";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -759,14 +795,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = "$(SRCROOT)/bierjohann/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b25bf632-2225-4f36-96c6-6ba849cbf8dc";
+				PROVISIONING_PROFILE_SPECIFIER = "Bierjohann Distr";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -778,10 +815,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = bierjohannTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bierjohann.app/bierjohann";
@@ -793,10 +834,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = bierjohannTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bierjohann.app/bierjohann";
@@ -807,10 +852,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = bierjohannUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = bierjohann;
@@ -821,10 +870,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 28L4SXWJY7;
 				INFOPLIST_FILE = bierjohannUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kohler.bierjohannUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = bierjohann;

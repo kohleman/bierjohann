@@ -4,7 +4,7 @@ import Apollo
 
 public final class BeerRatingQuery: GraphQLQuery {
   public static let operationString =
-    "query beerRating($q: String) {\n  beerSearch(query: $q) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      brewer {\n        __typename\n        id\n        name\n        country {\n          __typename\n          id\n          code\n        }\n      }\n      averageRating\n      ratingCount\n    }\n  }\n}"
+    "query beerRating($q: String) {\n  beerSearch(query: $q) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      brewer {\n        __typename\n        id\n        name\n        country {\n          __typename\n          id\n          code\n        }\n      }\n      averageRating\n      ratingCount\n      overallScore\n    }\n  }\n}"
 
   public var q: String?
 
@@ -88,6 +88,7 @@ public final class BeerRatingQuery: GraphQLQuery {
           GraphQLField("brewer", type: .object(Brewer.selections)),
           GraphQLField("averageRating", type: .scalar(Double.self)),
           GraphQLField("ratingCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("overallScore", type: .scalar(Double.self)),
         ]
 
         public var snapshot: Snapshot
@@ -96,8 +97,8 @@ public final class BeerRatingQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, brewer: Brewer? = nil, averageRating: Double? = nil, ratingCount: Int) {
-          self.init(snapshot: ["__typename": "Beer", "id": id, "name": name, "brewer": brewer.flatMap { $0.snapshot }, "averageRating": averageRating, "ratingCount": ratingCount])
+        public init(id: GraphQLID, name: String, brewer: Brewer? = nil, averageRating: Double? = nil, ratingCount: Int, overallScore: Double? = nil) {
+          self.init(snapshot: ["__typename": "Beer", "id": id, "name": name, "brewer": brewer.flatMap { $0.snapshot }, "averageRating": averageRating, "ratingCount": ratingCount, "overallScore": overallScore])
         }
 
         public var __typename: String {
@@ -151,6 +152,15 @@ public final class BeerRatingQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "ratingCount")
+          }
+        }
+
+        public var overallScore: Double? {
+          get {
+            return snapshot["overallScore"] as? Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "overallScore")
           }
         }
 

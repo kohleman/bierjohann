@@ -13,6 +13,7 @@ query beerRating($q: String) {
             }
             averageRating
             ratingCount
+            overallScore
         }
     }
 }

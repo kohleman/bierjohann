@@ -18,43 +18,16 @@
 import Foundation
 import UIKit
 import os.log
-import Apollo
-
-let dayInSeconds = 3600*24
-let myURLString = "https://www.bierjohann.ch/"
 
 
-// Currently not used
-func testApollo(searchString: String, beer: Beer) -> Beer{
-    let apollo = createApolloClient()
+//func enrichBeersWithRatings (beer: Beer, apolloClient: ApolloClient) {
+
+//    print("enrichBeersWithRatingsCC \(countryCodeToEmoji(country: beer.countryCode))")
+//    print("enrichBeersWithRatingsBrand \(beer.brand)")
+//    print("enrichBeersWithRatingsratingCount \(beer.ratingCount)")
+//    print("enrichBeersWithRatingsoverall Score \(beer.overallScore)")
     
-    apollo.fetch(query: BeerRatingQuery(q: searchString)) { (result, error) in
-        guard let data = result?.data else { return }
-        
-        if (data.beerSearch?.items.isEmpty == false) {
-            print(data.beerSearch?.items[0]?.name ?? "not existent")
-            //print(data.beerSearch?.items[0]?.averageRating ?? "not existent")
-            //print(data.beerSearch?.items[0]?.ratingCount)
-            //print(data.beerSearch?.items[0]?.brewer?.country?.code ?? "Help me!")
-            
-            beer.ratingValue = Float((data.beerSearch?.items[0]?.averageRating)!)
-            beer.ratingCount = (data.beerSearch?.items[0]?.ratingCount)!
-            beer.countryCode = (data.beerSearch?.items[0]?.brewer?.country?.code)!
-            
-            print((data.beerSearch?.items[0]?.brewer?.country?.code)!)
-            
-        }
-    }
-    return beer
-}
-
-
-func extractString(s: String) -> String {
-    // expect s as <h3 class=\"slider__element--title\">Schlappeseppel </h3>    
-    let rawString = s.components(separatedBy: ">")[1].components(separatedBy: "<")[0]
-    let cleanedString = rawString.html2String
-    return cleanedString
-}
+//}
 
 
 func getTimestamp() -> String {
@@ -71,10 +44,6 @@ func getTimestamp() -> String {
     return dateFormatter.string(from: d!)
 }
 
-
-func prepareStringForURLSearch (s: String) -> String{
-    return s.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-}
 
 
 func getURLSite(webaddress: String) -> String {
@@ -107,42 +76,8 @@ func getURLSite(webaddress: String) -> String {
 }
 
 
-func saveBeers(beers: [Beer]) {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(beers, toFile: Beer.ArchiveURL.path)
-    
-    if #available(iOS 10.0, *) {
-        if isSuccessfulSave {
-            os_log("Beers successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save beers...", log: OSLog.default, type: .error)
-        }
-    } else {
-        // Fallback on earlier versions
-    }
-    
-}
 
-func loadBeers() -> [Beer]? {
-    
-    let fileExists = FileManager().fileExists(atPath: Beer.ArchiveURL.path)
-    if fileExists {
-        if !checkAppUpgraded() {
-            os_log("Loading beers from local file.", log: OSLog.default, type: .debug)
-            let beerList = (NSKeyedUnarchiver.unarchiveObject(withFile: Beer.ArchiveURL.path) as? [Beer])!
-            return beerList
-        }
-        else {
-            os_log("Not loading beers from local file. App got upgraded", log: OSLog.default, type: .debug)
-        }
-    }
-    else {
-        os_log("First time run.", log: OSLog.default, type: .debug)
-    }
-    
-    return [Beer]()
-}
-
-func extractBeers(webaddress: String) -> [Beer]{
+func extractAndInitBeers(webaddress: String) -> [Beer]{
     
     var aBrand: String = ""
     var aName: String = ""
@@ -160,10 +95,10 @@ func extractBeers(webaddress: String) -> [Beer]{
         if line.contains("slider__element--text") {
             aName = extractString(s: line)
             
-            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0,
-                                   new: true, timestamp: 0, abv: 0.0, style: "", more: "") else {
+            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, style: "", overallScore: 0.0) else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
+            
             beers.append(aBeer)
             counter += 1
         }
@@ -172,18 +107,17 @@ func extractBeers(webaddress: String) -> [Beer]{
 }
 
 
+/* Compares a list of beers against another list of beers and returns
+ * a list of indices of the differing beers
+ */
 func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
     
     let now = Date().secondsSince1970
     
     let timeIndex = zip(newBeers, savedBeers).enumerated().filter() {
-        (now - $1.1.timestamp) < dayInSeconds
+        (now - $1.1.timestamp) < Constants.DAY_IN_SECONDS
         }.map{$0.0}
 
-    if (timeIndex.count > 0) {
-        print("Beer with new timestamp found \(timeIndex)")
-    }
-    
     for index in timeIndex {
         newBeers[index].new = false
         // save the timestamp when this was found as a new beer
@@ -195,7 +129,7 @@ func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
         }.map{$0.0}
     
     if (diffIndex.count > 0) {
-        print("New beer found \(diffIndex)")
+        print("New beers index:  \(diffIndex)")
     }
     
     for index in diffIndex {
@@ -209,24 +143,13 @@ func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
 
 func harvestBeers(savedBeers: [Beer]) -> [Beer]{
     var beers = [Beer]()
-    beers = extractBeers(webaddress: myURLString)
+    beers = extractAndInitBeers(webaddress: Constants.BIERJOHANN_URL)
     
     os_log("Got %i beers.", log: OSLog.default, type: .debug, beers.count)
     
     _ = diffBeers(savedBeers: savedBeers, newBeers: beers)
     saveBeers(beers: beers)
     return beers
-}
-
-
-// Country Code to Emoji flag
-func flag(country:String) -> String {
-    let base : UInt32 = 127397
-    var s = ""
-    for v in country.unicodeScalars {
-        s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
-    }
-    return String(s)
 }
 
 
@@ -241,17 +164,13 @@ func checkAppUpgraded() -> Bool {
     
     if versionOfLastRun == nil {
         // First start after installing the app
-        
     } else if versionOfLastRun != currentVersion {
         // App was updated since last run
         returnValue = true
-        
     } else {
         // nothing changed
         returnValue = false
-        
     }
-    
     UserDefaults.standard.set(currentVersion, forKey: "VersionOfLastRun")
     UserDefaults.standard.synchronize()
 
@@ -264,4 +183,8 @@ func debug(file: String = #file, line: Int = #line, function: String = #function
     return "\(file):\(line) : \(function)"
 }
 
+
+func roundOneDecimals(f: Float) -> Float {
+    return Float(round(10*f)/10)
+}
 

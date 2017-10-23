@@ -10,8 +10,6 @@ import UIKit
 import os.log
 import Apollo
 
-var bierjohann_brown = UIColor(red:0.46, green:0.09, blue:0.02, alpha:1.0)
-let googleSearchString = "https://www.google.com/search?q="
 
 
 class BeerTableViewController: UITableViewController {
@@ -34,20 +32,38 @@ class BeerTableViewController: UITableViewController {
         // Load any saved beers, otherwise load data from website only
         if let savedBeers = loadBeers() {
             beers = harvestBeers(savedBeers: savedBeers)
+            
+            for b in savedBeers {
+                print(b.brand)
+                print(b.timestamp)
+                print("CC \(countryCodeToEmoji(country: (b.countryCode)))")
+                
+            }
+
         }
         else {
             // Loading data for the first time
             os_log("Loading beers for the first time.", log:OSLog.default, type: .debug)
-            beers = extractBeers(webaddress: myURLString)
+            beers = extractAndInitBeers(webaddress: Constants.BIERJOHANN_URL)
             saveBeers(beers: beers)
         }
-
+        
         setUpdatedLabel()
         addRefreshControl()
         
+        
         RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
-        RefreshButton.tintColor = bierjohann_brown
+        RefreshButton.tintColor = Constants.BIERJOHANN_BROWN
         RefreshButton.target = self
+        
+        
+//        let emptyBeer = Beer(runningNumber: 1, brand: "Braukollektiv", type: "Horst", ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, style: "", overallScore: 0.0)
+//        enrichBeersWithRatings(beer: emptyBeer!)
+//        print("CC \(countryCodeToEmoji(country: (emptyBeer?.countryCode)!))")
+//        print("Brand \(emptyBeer?.brand ?? "b")")
+//        print("ratingCount \(emptyBeer?.ratingCount ?? 11)")
+//        print("overall Score \(emptyBeer?.overallScore ?? 0.1)")
+
     }
     
     
@@ -55,7 +71,7 @@ class BeerTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(beerRefresh(sender:)), for: UIControlEvents.valueChanged)
         self.refreshControl!.tintColor = UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0)
-        self.refreshControl!.backgroundColor = bierjohann_brown
+        self.refreshControl!.backgroundColor = Constants.BIERJOHANN_BROWN
         let attributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.94, green:0.88, blue:0.77, alpha:1.0), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
         let fetching = NSLocalizedString("Fetching", comment: "Shows up on refreshing via pull")
         self.refreshControl!.attributedTitle = NSAttributedString(string: fetching, attributes: attributes)
@@ -113,57 +129,67 @@ class BeerTableViewController: UITableViewController {
         cell.brandLabel.text = beer.brand
         cell.nameLabel.text = beer.type
 
-//        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
-//        beer = testApollo(searchString: searchString, beer: beer)
-//        print(flag(country: beer.countryCode))
-//        cell.countryCodeLabel.text = flag(country: beer.countryCode)
+        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
+        let res = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer)
         
-            if (beer.ratingCount == 0) {
+//        if (beer.ratingCount < 0) {
             cell.ratingLabel.isHidden = true
             cell.ratingValue.isHidden = true
             cell.ratingCount.isHidden = true
             cell.countryCodeLabel.isHidden = true
-        }
-        else {
-            cell.ratingLabel.isHidden = false
-            cell.ratingValue.isHidden = false
-            cell.ratingCount.isHidden = false
-            cell.countryCodeLabel.isHidden = false
-        }
+//        }
+//        else {
+//            cell.ratingLabel.isHidden = false
+//            cell.ratingValue.isHidden = false
+//            cell.ratingCount.isHidden = false
+//            cell.countryCodeLabel.isHidden = false
+//        }
+        
+        cell.ratingValue.text = String(beer.overallScore)
+        cell.ratingCount.text = String(beer.ratingCount)
+        cell.countryCodeLabel.text = countryCodeToEmoji(country: beer.countryCode)
+
+        cell.newLabel.isHidden = beer.new
         
         cell.nameLabel.adjustsFontSizeToFitWidth = true
         cell.nameLabel.minimumScaleFactor = 0.5
-
-        cell.ratingValue.text = String(beer.ratingValue)
-        cell.ratingCount.text = String(beer.ratingCount)
-        
-        cell.newLabel.isHidden = beer.new
+        cell.ratingCount.adjustsFontSizeToFitWidth = true
+        cell.ratingCount.minimumScaleFactor = 0.5
+        cell.ratingLabel.adjustsFontSizeToFitWidth = true
+        cell.ratingLabel.minimumScaleFactor = 0.5
         
         return cell
     }
     
-    // called on a selected row
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let beer = beers[indexPath.row]
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        super.prepare(for: segue, sender: sender)
+        switch(segue.identifier ?? "") {
         
-        if #available(iOS 10.0, *) {
-            os_log("Searching...", log:OSLog.default, type: .debug)
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        let encodedBrand = prepareStringForURLSearch(s: beer.brand)
-        let encodedType = prepareStringForURLSearch(s: beer.type)
-        
-        guard let url = URL(string: googleSearchString + "\(encodedBrand  )+\(encodedType)") else {
-            return //be safe
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
+            case "ShowBeerDetail":
+                guard let beerDetailViewController = segue.destination as? BeerViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                guard let selectedBeerCell = sender as? BeerTableViewCell else {
+                    fatalError("Unexpected sender: \(sender ?? "Unknown" as AnyObject)")
+                }
+                
+                guard let indexPath = tableView.indexPath(for: selectedBeerCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+                
+                let selectedBeer = beers[indexPath.row]
+                beerDetailViewController.beer = selectedBeer
+                print("Selected \(selectedBeer.brand)")
+                        
+            default:
+                fatalError("Unexpected Segue Identifier")
         }
     }
+
+
+
 }
+
+
