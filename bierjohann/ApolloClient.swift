@@ -32,7 +32,7 @@ func createApolloClient () -> ApolloClient {
 
 func queryGraphql(apolloClient: ApolloClient, searchString: String, beer: Beer) {
     
-    let res = apolloClient.watch(query: BeerRatingQuery(q: searchString)) { (result, error) in
+    _ = apolloClient.watch(query: BeerRatingQuery(q: searchString)) { (result, error) in
         guard let data = result?.data else {
             os_log("#### NO DATA found with %i %@!", log: OSLog.default, type: .debug, beer.runningNumber, searchString)
             return
@@ -41,14 +41,17 @@ func queryGraphql(apolloClient: ApolloClient, searchString: String, beer: Beer) 
         os_log("Calles queryGraphql with %i %@", log: OSLog.default, type: .debug, beer.runningNumber, searchString)
         
         if (data.beerSearch?.items.isEmpty == false) {
-//            beer.overallScore = roundOneDecimals(f: (Float((data.beerSearch?.items[0]?.overallScore)!)))
-            beer.ratingCount = (data.beerSearch?.items[0]?.ratingCount)!
-            beer.countryCode = (data.beerSearch?.items[0]?.brewer?.country?.code)!
+            beer.desc = (data.beerSearch?.items[0]?.description) ?? ""
+            beer.ratingValue = (data.beerSearch?.items[0]?.averageRating) ?? 0.0
+            beer.ratingCount = (data.beerSearch?.items[0]?.ratingCount) ?? 0
+            beer.countryCode = (data.beerSearch?.items[0]?.brewer?.country?.code) ?? ""
+            beer.abv = (data.beerSearch?.items[0]?.abv) ?? 0.0
+            beer.overallScore = (data.beerSearch?.items[0]?.overallScore) ?? 0.0
+            beer.imageUrl = (data.beerSearch?.items[0]?.imageUrl) ?? ""
             
-//            print(beer.overallScore)
-//            print(countryCodeToEmoji(country: beer.countryCode))
-//            print(beer.ratingCount)
-            
+            beer.style.name = (data.beerSearch?.items[0]?.style.name) ?? ""
+            beer.brewer.city = (data.beerSearch?.items[0]?.brewer?.city) ?? ""
+            beer.brewer.web = (data.beerSearch?.items[0]?.brewer?.web) ?? ""
         }
     }
 }

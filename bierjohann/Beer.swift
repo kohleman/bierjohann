@@ -10,20 +10,49 @@ import Foundation
 import os.log
 
 
+struct BeerStyle {
+    var id: Int = 0
+    var name: String = ""
+    var desc: String = ""
+    // var glass: Glass
+}
+
+struct Brewer {
+    var id: Int = 0
+    var name: String = ""
+    var desc: String = ""
+    var type: String = ""
+    var twitter: String = ""
+    var facebook: String = ""
+    var web: String = ""
+    var streetAddress: String = ""
+    var city: String = ""
+    var country: String = ""
+    var zip: String = ""
+    var email: String = ""
+    var imageUrl: String = ""
+    var score: Int = 0
+}
+
+
 class Beer: NSObject, NSCoding {
     
     //MARK: Properties
+    var id: Int = 0
     var runningNumber: Int
     var brand : String
     var type : String
-    var ratingValue: Float
+    var desc = ""
+    var ratingValue: Double
     var ratingCount: Int
     var new: Bool
     var timestamp: Int64
     var countryCode = ""
     var abv = 0.0
-    var style = ""
-    var overallScore : Float = 0.0
+    var overallScore = 0.0
+    var imageUrl: String = ""
+    var style: BeerStyle = BeerStyle()
+    var brewer: Brewer = Brewer()
     
 
     //MARK: Types, needed for NSCoding
@@ -48,8 +77,8 @@ class Beer: NSObject, NSCoding {
     
     //MARK: Initialization
         
-    init?(runningNumber: Int, brand: String, type: String, ratingValue: Float, ratingCount: Int, new: Bool,
-          timestamp: Int64, abv: Double, style: String, overallScore: Float) {
+    init?(runningNumber: Int, brand: String, type: String, ratingValue: Double, ratingCount: Int, new: Bool,
+          timestamp: Int64, abv: Double, overallScore: Double) {
         
 //        guard !brand.isEmpty && !type.isEmpty else {
 //            return nil
@@ -74,7 +103,6 @@ class Beer: NSObject, NSCoding {
         self.timestamp = timestamp
         self.countryCode = ""
         self.abv = abv
-        self.style = ""
         self.overallScore = overallScore
         
     }
@@ -90,7 +118,6 @@ class Beer: NSObject, NSCoding {
         aCoder.encode(timestamp, forKey: PropertyKey.timestamp)
         aCoder.encode(countryCode, forKey: PropertyKey.countryCode)
         aCoder.encode(abv, forKey: PropertyKey.abv)
-        aCoder.encode(style, forKey: PropertyKey.style)
         aCoder.encode(overallScore, forKey: PropertyKey.overallScore)
     }
     
@@ -119,7 +146,7 @@ class Beer: NSObject, NSCoding {
             return nil
         }
        
-        let ratingValue = aDecoder.decodeFloat(forKey: PropertyKey.ratingValue)
+        let ratingValue = aDecoder.decodeDouble(forKey: PropertyKey.ratingValue)
         let ratingCount = aDecoder.decodeInteger(forKey: PropertyKey.ratingCount)
         let new = aDecoder.decodeBool(forKey: PropertyKey.new)
         let timestamp = aDecoder.decodeInt64(forKey: PropertyKey.timestamp)
@@ -135,21 +162,13 @@ class Beer: NSObject, NSCoding {
         
         let abv = aDecoder.decodeDouble(forKey: PropertyKey.abv)
 
-        guard let style = aDecoder.decodeObject(forKey: PropertyKey.style) as? String else {
-            if #available(iOS 10.0, *) {
-                os_log("Unable to decode the style for a Beer object.", log: OSLog.default, type: .debug)
-            } else {
-                // Fallback on earlier versions
-            }
-            return nil
-        }
         
-        let overallScore = aDecoder.decodeFloat(forKey: PropertyKey.overallScore)
+        let overallScore = aDecoder.decodeDouble(forKey: PropertyKey.overallScore)
 
 
         // Must call designated initializer.
         self.init(runningNumber: runningNumber, brand: brand, type: type, ratingValue: ratingValue,
-                  ratingCount: ratingCount, new: new, timestamp: timestamp, abv: abv, style: style, overallScore: overallScore)
+                  ratingCount: ratingCount, new: new, timestamp: timestamp, abv: abv, overallScore: overallScore)
     }
     
     // Needed for comparison of two instances but currently unused

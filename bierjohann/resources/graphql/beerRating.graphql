@@ -3,17 +3,48 @@ query beerRating($q: String) {
         items {
             id
             name
-            brewer {
-                id
-                name
-                country {
-                    id
-                    code
-                }
-            }
+            abv
             averageRating
             ratingCount
             overallScore
+            description
+            imageUrl
+            brewer {
+                id
+                name
+                description
+                type
+                twitter
+                facebook
+                web
+                streetAddress
+                city
+                country {
+                    id
+                    name
+                    code
+                }
+                zip
+                email
+                areaCode
+                phone
+                imageUrl
+                score
+            }
+            style {
+                id
+                name
+                description
+                parent {
+                    id
+                    name
+                }
+                glasses {
+                    id
+                    name
+                    description
+                }
+            }
         }
     }
 }

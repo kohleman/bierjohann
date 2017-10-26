@@ -95,7 +95,7 @@ func extractAndInitBeers(webaddress: String) -> [Beer]{
         if line.contains("slider__element--text") {
             aName = extractString(s: line)
             
-            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, style: "", overallScore: 0.0) else {
+            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, overallScore: 0.0) else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
             
@@ -184,7 +184,7 @@ func debug(file: String = #file, line: Int = #line, function: String = #function
 }
 
 
-func roundOneDecimals(f: Float) -> Float {
-    return Float(round(10*f)/10)
+func roundOneDecimals(d: Double) -> Double {
+    return Double(round(10*d)/10)
 }
 

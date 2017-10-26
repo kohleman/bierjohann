@@ -33,11 +33,10 @@ class BeerTableViewController: UITableViewController {
         if let savedBeers = loadBeers() {
             beers = harvestBeers(savedBeers: savedBeers)
             
-            for b in savedBeers {
-                print(b.brand)
-                print(b.timestamp)
-                print("CC \(countryCodeToEmoji(country: (b.countryCode)))")
-                
+            for _ in savedBeers {
+//                print(b.brand)
+//                print(b.timestamp)
+//                print("CC \(countryCodeToEmoji(country: (b.countryCode)))")
             }
 
         }
@@ -46,6 +45,12 @@ class BeerTableViewController: UITableViewController {
             os_log("Loading beers for the first time.", log:OSLog.default, type: .debug)
             beers = extractAndInitBeers(webaddress: Constants.BIERJOHANN_URL)
             saveBeers(beers: beers)
+        }
+        
+        // getting data from ratebeer.com
+        for beer in beers {
+            let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
+            _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer)
         }
         
         setUpdatedLabel()
@@ -129,21 +134,10 @@ class BeerTableViewController: UITableViewController {
         cell.brandLabel.text = beer.brand
         cell.nameLabel.text = beer.type
 
-        let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
-        let res = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer)
-        
-//        if (beer.ratingCount < 0) {
-            cell.ratingLabel.isHidden = true
-            cell.ratingValue.isHidden = true
-            cell.ratingCount.isHidden = true
-            cell.countryCodeLabel.isHidden = true
-//        }
-//        else {
-//            cell.ratingLabel.isHidden = false
-//            cell.ratingValue.isHidden = false
-//            cell.ratingCount.isHidden = false
-//            cell.countryCodeLabel.isHidden = false
-//        }
+        cell.ratingLabel.isHidden = true
+        cell.ratingValue.isHidden = true
+        cell.ratingCount.isHidden = true
+        cell.countryCodeLabel.isHidden = true
         
         cell.ratingValue.text = String(beer.overallScore)
         cell.ratingCount.text = String(beer.ratingCount)
@@ -181,8 +175,11 @@ class BeerTableViewController: UITableViewController {
                 
                 let selectedBeer = beers[indexPath.row]
                 beerDetailViewController.beer = selectedBeer
-                print("Selected \(selectedBeer.brand)")
-                        
+
+                let searchString = [selectedBeer.brand, selectedBeer.type].flatMap({$0}).joined(separator: " ")
+                _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: selectedBeer)
+
+
             default:
                 fatalError("Unexpected Segue Identifier")
         }
