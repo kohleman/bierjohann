@@ -4,3 +4,12 @@
 "NoDataTitle" = "Keine Daten. Bist Du offline?";
 "Fetching" = "Lade Bier Daten...";
 "RatingLabel" = "Bewertung";
+
+"BeerName"= "";
+"BrewerName"= "Brauerei";
+"ABV"= "%";
+"UserRating"= "Bewertung";
+"BeerStyle"= "Stil";
+"NumberOfRatings"= "# Bewertungen";
+"Brewerscity"= "Stadt";
+"BeerDescription" = "";

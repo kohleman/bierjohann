@@ -4,3 +4,11 @@
 "NoDataTitle"= "Brak danych. Czy jesteś offline?";
 "RatingLabel"= "Ocena";
 "Fetching"= "Pobieranie danych o piwie...";
+
+"BeerName"= "";
+"BrewerName"= "Browar";
+"ABV"= "%";
+"UserRating"= "Ocena użytkowników";
+"BeerStyle"= "Styl";
+"NumberOfRatings"= "Liczba ocen";
+"Brewerscity"= "Miasto";

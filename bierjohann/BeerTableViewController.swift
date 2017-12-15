@@ -57,18 +57,10 @@ class BeerTableViewController: UITableViewController {
         addRefreshControl()
         
         
-        RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
-        RefreshButton.tintColor = Constants.BIERJOHANN_BROWN
-        RefreshButton.target = self
+//        RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
+//        RefreshButton.tintColor = Constants.BIERJOHANN_BROWN
+//        RefreshButton.target = self
         
-        
-//        let emptyBeer = Beer(runningNumber: 1, brand: "Braukollektiv", type: "Horst", ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, style: "", overallScore: 0.0)
-//        enrichBeersWithRatings(beer: emptyBeer!)
-//        print("CC \(countryCodeToEmoji(country: (emptyBeer?.countryCode)!))")
-//        print("Brand \(emptyBeer?.brand ?? "b")")
-//        print("ratingCount \(emptyBeer?.ratingCount ?? 11)")
-//        print("overall Score \(emptyBeer?.overallScore ?? 0.1)")
-
     }
     
     
@@ -95,8 +87,7 @@ class BeerTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (beers.count > 0) {
-            HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
-            HeaderUINavigationItem.leftBarButtonItem?.title = "Info"
+//            HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
             return 1
         }
         else {

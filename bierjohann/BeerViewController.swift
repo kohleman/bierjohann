@@ -61,16 +61,16 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             beerStyleName.text = beer.style.name
             beerBrewerCity.text = beer.brewer.city
             beerDescription.text = beer.desc
-            beerBrewerWebaddress.text = beer.web
+            beerBrewerWebaddress.text = beer.brewer.web
             
-            typeLabel.text = "Beer Name"
-            brandLabel.text  = "Brewer"
-            abvLabel.text = "ABV"
-            overallScoreLabel.text = "Score from 100 max"
-            StyleLabel.text = "Beer Style"
-            ratingcountLabel.text = "# of Ratings"
-            brewerCity.text = "Brewer's city"
-            beerDescr.text = "Beer Description"
+            typeLabel.text = NSLocalizedString("BeerName", comment: "Beer Name")
+            brandLabel.text  = NSLocalizedString("BrewerName", comment: "Brewery")
+            abvLabel.text = NSLocalizedString("ABV", comment: "ABV")
+            overallScoreLabel.text = NSLocalizedString("UserRating", comment: "UserRating")
+            StyleLabel.text = NSLocalizedString("BeerStyle", comment: "BeerStyle")
+            ratingcountLabel.text = NSLocalizedString("NumberOfRatings", comment: "NumberOfRatings")
+            brewerCity.text = NSLocalizedString("Brewerscity", comment: "Brewerscity")
+            beerDescr.text = NSLocalizedString("BeerDescription", comment: "BeerDescription")
             
         }
         
