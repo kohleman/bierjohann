@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Bierjohann Beers on Tab-->
+        <!--Beers-->
         <scene sceneID="b4f-UV-pGi">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="lKr-dg-OuE" customClass="BeerTableViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Beers" automaticallyAdjustsScrollViewInsets="NO" id="lKr-dg-OuE" customClass="BeerTableViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="20" sectionFooterHeight="50" id="LCU-os-PUo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,11 +33,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerTableViewCell" rowHeight="61" id="1Jn-MP-BLR" customClass="BeerTableViewCell" customModule="bierjohann" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BeerTableViewCell" rowHeight="61" id="1Jn-MP-BLR" customClass="BeerTableViewCell" customModule="bierjohann" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Jn-MP-BLR" id="uXX-CE-53e">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="60.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TC-KV-S9n">
@@ -106,7 +107,10 @@
                                     <outlet property="numberLabel" destination="ItB-Ds-hVE" id="WKo-3p-i5V"/>
                                     <outlet property="ratingCount" destination="Ooj-X2-4bc" id="jpe-UV-Zqr"/>
                                     <outlet property="ratingValue" destination="zVE-YX-xhw" id="PUM-RV-8t2"/>
-                                    <segue destination="SOH-FH-r95" kind="showDetail" identifier="ShowBeerDetail" id="JJl-4z-4Tg"/>
+                                    <segue destination="SOH-FH-r95" kind="show" identifier="ShowBeerDetail" id="JJl-4z-4Tg">
+                                        <segue key="commit" inheritsFrom="parent" id="WpP-Nf-Jdo"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Y9Z-7R-1oo"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -115,32 +119,21 @@
                             <outlet property="delegate" destination="lKr-dg-OuE" id="4y5-9h-MK0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Beers" image="iconmonstr-beer-4-24.png" selectedImage="iconmonstr-beer-4-24.png" id="Ybj-16-53k">
-                        <color key="badgeColor" red="0.47450980392156861" green="0.12941176470588234" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Bierjohann Beers on Tab" id="TZc-V2-wJd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fPl-4a-chU">
-                            <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Beers" id="LvW-21-a4c"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="Footer" destination="Ub8-Bo-Zy9" id="xGM-so-fIH"/>
-                        <outlet property="HeaderUINavigationItem" destination="TZc-V2-wJd" id="qBW-gu-n8J"/>
-                        <outlet property="RefreshButton" destination="fPl-4a-chU" id="2T1-vz-q5j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evI-mh-Pgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="445"/>
+            <point key="canvasLocation" x="3905" y="1155"/>
         </scene>
         <!--beerDetailViewController-->
         <scene sceneID="Jmq-as-1QN">
             <objects>
-                <viewController title="beerDetailViewController" id="SOH-FH-r95" customClass="BeerViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="beerDetailViewController" modalPresentationStyle="currentContext" id="SOH-FH-r95" customClass="BeerViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VFN-a5-BgA"/>
                         <viewControllerLayoutGuide type="bottom" id="mLa-ir-dPr"/>
@@ -150,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVF-Bv-WWc">
-                                <rect key="frame" x="23" y="10" width="329" height="624"/>
+                                <rect key="frame" x="23" y="72" width="329" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ratingCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6b-ET-PRT">
@@ -191,8 +184,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-fD-Kie">
-                                        <rect key="frame" x="197" y="307" width="132" height="21"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-fD-Kie">
+                                        <rect key="frame" x="214" y="307" width="115" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Google it!">
                                             <color key="titleColor" red="0.25200366610000002" green="0.41633057829999998" blue="0.68744051399999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -290,7 +283,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="webaddress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szz-rD-xoE">
-                                        <rect key="frame" x="0.0" y="336" width="42" height="21"/>
+                                        <rect key="frame" x="0.0" y="336" width="109" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -315,8 +308,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationItem key="navigationItem" id="viy-oE-Y7n"/>
                     <connections>
                         <outlet property="StyleLabel" destination="5cr-8s-GMa" id="qjt-QJ-DGL"/>
                         <outlet property="abvLabel" destination="IVh-gw-or8" id="zeD-rv-z7u"/>
@@ -345,7 +337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAm-E4-535" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3229.5999999999999" y="1167.1664167916042"/>
+            <point key="canvasLocation" x="3905" y="1933"/>
         </scene>
         <!--Info-->
         <scene sceneID="gJr-F4-gpa">
@@ -360,16 +352,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWi-eF-Gnr">
-                                <rect key="frame" x="13" y="25" width="348" height="1284"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">© 2017 Manuel Kohler 4056 Basel Switzerland manuel.kohler@protonmail.ch  Thanks to Hyojin Kim, Moritz Lupatsch and Julian Sikorski for their help.  DISCLAIMER:  Beers are provided by:  https://www.bierjohann.ch/ Zum Bierjohann Elsässerstrasse 17
+                                <rect key="frame" x="16" y="204" width="348" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <string key="text">DISCLAIMER:  Beers are provided by:  https://www.bierjohann.ch/ Zum Bierjohann Elsässerstrasse 17
 CH-4056 Basel  bier@bierjohann.ch +41 61 5544644  Ratings are provided by:  https://www.ratebeer.com/ RateBeer, LLC
 P.O. Box 475
 Fulton, CA 95439
-United States of America   Apollo GraphQL apollographql/apollo-codegen is licensed under the MIT License:  The MIT License (MIT)
-
-Copyright (c) 2016 Meteor Development Group, Inc.
+United States of America  Apollo GraphQL apollographql/apollo-codegen is licensed under the MIT License:  Copyright (c) 2016 Meteor Development Group, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -387,14 +377,56 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https://theappspace.com/</string>
-                                <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov: https://theappspace.com/  SwiftSoup  MIT License
+
+Copyright (c) 2016 Nabil Chatbi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="© 2017 Manuel Kohler 4056 Basel Switzerland manuel.kohler@protonmail.ch" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rhs-gP-fud">
+                                <rect key="frame" x="16" y="38" width="229" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Thanks to Hyojin Kim, Moritz Lupatsch and Julian Sikorski for their help." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y4Q-ud-l79">
+                                <rect key="frame" x="16" y="132" width="229" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bierjohann_logo_claim.png" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-Pn-uOn">
+                                <rect key="frame" x="253" y="68" width="116" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="0.60287350171232879" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Info" image="iconmonstr-info-6-24.png" id="aNe-sU-xBf">
                         <color key="badgeColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -402,28 +434,56 @@ SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https:
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6j-gY-566" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3888.8000000000002" y="444.82758620689657"/>
+            <point key="canvasLocation" x="5655.1999999999998" y="393.55322338830587"/>
         </scene>
         <!--Events-->
-        <scene sceneID="Okw-Od-3cY">
+        <scene sceneID="fGy-U1-hS7">
             <objects>
-                <viewController id="DTj-3O-BNZ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="71a-Qu-R1k"/>
-                        <viewControllerLayoutGuide type="bottom" id="DPo-bJ-QBw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5kU-VF-Yxf">
+                <tableViewController id="jKo-Ho-XcN" customClass="EventTableViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Ek-YL-W7K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Events" image="iconmonstr-calendar-5-24.png" badgeValue="1" id="KaD-VG-I3N">
-                        <color key="badgeColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mBb-oZ-QGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="70" id="7Wt-4a-cQP" customClass="EventTableViewCell" customModule="bierjohann" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Wt-4a-cQP" id="sSV-SD-o59">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnt-R9-Ejk">
+                                            <rect key="frame" x="11" y="0.0" width="364" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-Ou-rS2">
+                                            <rect key="frame" x="11" y="31" width="364" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="xpi-Ou-rS2" id="feJ-r3-mVm"/>
+                                    <outlet property="titleLabel" destination="pnt-R9-Ejk" id="5dJ-MV-b1H"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jKo-Ho-XcN" id="Mrt-cE-wLS"/>
+                            <outlet property="delegate" destination="jKo-Ho-XcN" id="h7K-cy-ys9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Events" id="Ihi-1t-88S"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oot-Bh-Cev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4543" y="445"/>
+            <point key="canvasLocation" x="4780" y="1156"/>
         </scene>
         <!--Home-->
         <scene sceneID="oYR-JJ-asN">
@@ -438,7 +498,7 @@ SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https:
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bierjohann_logo_claim" translatesAutoresizingMaskIntoConstraints="NO" id="jrA-j3-eqC">
-                                <rect key="frame" x="229" y="20" width="130" height="130"/>
+                                <rect key="frame" x="122" y="268" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -448,14 +508,12 @@ SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https:
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSG-O4-sNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5189.6000000000004" y="444.82758620689657"/>
+            <point key="canvasLocation" x="3047" y="394"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hNU-UN-FE8">
             <objects>
                 <tabBarController id="HO5-eo-nov" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
-                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="R0l-aR-JLJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -465,8 +523,8 @@ SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https:
                     </tabBar>
                     <connections>
                         <segue destination="NQX-bv-whz" kind="relationship" relationship="viewControllers" id="t3W-61-mOr"/>
-                        <segue destination="lKr-dg-OuE" kind="relationship" relationship="viewControllers" id="1Xy-uI-lQP"/>
-                        <segue destination="DTj-3O-BNZ" kind="relationship" relationship="viewControllers" id="FDx-xg-kzH"/>
+                        <segue destination="5Ie-Ug-yLt" kind="relationship" relationship="viewControllers" id="Hcd-0v-XPN"/>
+                        <segue destination="NQW-gc-H1U" kind="relationship" relationship="viewControllers" id="Tnk-NZ-xW2"/>
                         <segue destination="gar-RM-y1d" kind="relationship" relationship="viewControllers" id="cZw-ML-E6x"/>
                     </connections>
                 </tabBarController>
@@ -474,13 +532,55 @@ SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov:  https:
             </objects>
             <point key="canvasLocation" x="4143" y="-399"/>
         </scene>
+        <!--Events-->
+        <scene sceneID="toM-Ns-QSh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NQW-gc-H1U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" image="iconmonstr-calendar-5-24.png" id="9lV-p0-mAp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VeR-rG-6cF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jKo-Ho-XcN" kind="relationship" relationship="rootViewController" id="Eb9-I7-uFd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2Z-jY-VG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4780" y="393.55322338830587"/>
+        </scene>
+        <!--Beers-->
+        <scene sceneID="E4B-Ws-5Z5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Ie-Ug-yLt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Beers" image="iconmonstr-beer-4-24.png" id="quL-fH-zn4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XAy-ev-0C2">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lKr-dg-OuE" kind="relationship" relationship="rootViewController" id="lPC-Za-iQu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvR-lY-e6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3906" y="394"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Bierjohann_logo_claim" width="380" height="389"/>
+        <image name="Bierjohann_logo_claim.png" width="150" height="154"/>
         <image name="iconmonstr-beer-4-24.png" width="24" height="24"/>
         <image name="iconmonstr-calendar-5-24.png" width="24" height="24"/>
         <image name="iconmonstr-home-6-24.png" width="24" height="24"/>
         <image name="iconmonstr-info-6-24.png" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JJl-4z-4Tg"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

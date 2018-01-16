@@ -1,5 +1,5 @@
 //
-//  BeerViewController.swift
+//  BeerDetailViewController.swift
 //  bierjohann
 //
 //  Created by Kohler Manuel on 23.10.17.
@@ -46,8 +46,8 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         scrollView.contentSize = CGSize(width: self.view.frame.size.width-100, height: 1000)
         
         if let beer = beer {
-            navigationItem.title = ""
-            navigationItem.backBarButtonItem?.isEnabled = true
+            navigationItem.title = "tt"
+            navigationItem.hidesBackButton = false
 
             beerNewLabel.isHidden = beer.new
             beerNumberLabel.text = String(beer.runningNumber)

@@ -76,9 +76,8 @@ func getURLSite(webaddress: String) -> String {
 }
 
 
-
 func extractAndInitBeers(webaddress: String) -> [Beer]{
-    
+        
     var aBrand: String = ""
     var aName: String = ""
     var counter: Int = 1
@@ -102,8 +101,9 @@ func extractAndInitBeers(webaddress: String) -> [Beer]{
             beers.append(aBeer)
             counter += 1
         }
-    }
+    }        
     return beers
+    
 }
 
 

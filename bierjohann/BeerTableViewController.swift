@@ -151,7 +151,7 @@ class BeerTableViewController: UITableViewController {
 
         super.prepare(for: segue, sender: sender)
         switch(segue.identifier ?? "") {
-        
+
             case "ShowBeerDetail":
                 guard let beerDetailViewController = segue.destination as? BeerViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")
@@ -159,13 +159,14 @@ class BeerTableViewController: UITableViewController {
                 guard let selectedBeerCell = sender as? BeerTableViewCell else {
                     fatalError("Unexpected sender: \(sender ?? "Unknown" as AnyObject)")
                 }
-                
+
                 guard let indexPath = tableView.indexPath(for: selectedBeerCell) else {
                     fatalError("The selected cell is not being displayed by the table")
                 }
-                
+
                 let selectedBeer = beers[indexPath.row]
                 beerDetailViewController.beer = selectedBeer
+                beerDetailViewController.navigationItem.hidesBackButton = false
 
                 let searchString = [selectedBeer.brand, selectedBeer.type].flatMap({$0}).joined(separator: " ")
                 _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: selectedBeer)
