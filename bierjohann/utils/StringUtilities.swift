@@ -35,16 +35,17 @@ func prepareStringForURLSearch (s: String) -> String{
 }
 
 
-func extractEvents() -> [Event] {
+func extractEvents(eventFirst: Event) -> [Event] {
 
     var events = [Event]()
     var event: Event
-    var eventId = 1
+    var eventId = eventFirst.id + 1
+    var previousEvent = eventFirst
     
-    guard var previousEvent = Event(id: 0, title: "Title", date: "Date", body: "body", html: "rawHTML")
-        else {
-            fatalError("Unable to instantiate dummy Event!")
-    }
+//    guard var previousEvent = Event(id: 0, title: "Title", date: "Date", body: "body", html: "rawHTML")
+//        else {
+//            fatalError("Unable to instantiate dummy Event!")
+//    }
     
     while (true) {
         let eventAddress = "https://www.bierjohann.ch/news/p\(eventId)/?show=1"
@@ -59,7 +60,7 @@ func extractEvents() -> [Event] {
         events.append(event)
         eventId += 1
     }
-    os_log("%@", type: .debug, "Got \(events.count) events.")
+    os_log("%@", type: .debug, "Got \(events.count) new events.")
 
     // sort the events by id in desc order
     return events.sorted(by: { $0.id > $1.id })
@@ -78,7 +79,7 @@ func parseEvents(html: String) -> Event {
         let article: Element = try! doc.select("article").first()!
         let id = Int(try! article.attr("data-id"))!
         event.id = id
-        os_log("%@", type: .debug, "Got event with id \(id).")
+        os_log("%@", type: .debug, "Parsed event with id \(id).")
 
         let h2: Element = try! article.select("h2").first()!
         event.title = try! h2.text()

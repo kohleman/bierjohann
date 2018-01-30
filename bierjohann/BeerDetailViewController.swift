@@ -46,7 +46,7 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         scrollView.contentSize = CGSize(width: self.view.frame.size.width-100, height: 1000)
         
         if let beer = beer {
-            navigationItem.title = "tt"
+            navigationItem.title = ""
             navigationItem.hidesBackButton = false
 
             beerNewLabel.isHidden = beer.new
@@ -57,11 +57,12 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
 //            beerRatingValue.text = String(roundOneDecimals(d: beer.ratingValue))
             beerRatingCount.text = String(beer.ratingCount)
             beerAbv.text = String(roundOneDecimals(d: beer.abv)) + " %"
-            beerOverallScore.text = String(roundOneDecimals(d: beer.overallScore))
+            beerOverallScore.text = String(roundOneDecimals(d: beer.overallScore)) + "/100"
             beerStyleName.text = beer.style.name
             beerBrewerCity.text = beer.brewer.city
             beerDescription.text = beer.desc
             beerBrewerWebaddress.text = beer.brewer.web
+            print(beer.imageUrl)
             
             typeLabel.text = NSLocalizedString("BeerName", comment: "Beer Name")
             brandLabel.text  = NSLocalizedString("BrewerName", comment: "Brewery")

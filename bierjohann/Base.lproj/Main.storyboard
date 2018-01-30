@@ -128,7 +128,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evI-mh-Pgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3905" y="1155"/>
+            <point key="canvasLocation" x="4142" y="1178"/>
         </scene>
         <!--beerDetailViewController-->
         <scene sceneID="Jmq-as-1QN">
@@ -140,10 +140,10 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tbu-ZK-JLt" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVF-Bv-WWc">
-                                <rect key="frame" x="23" y="72" width="329" height="570"/>
+                                <rect key="frame" x="20" y="6" width="329" height="625"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ratingCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6b-ET-PRT">
@@ -167,13 +167,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="beerDescription" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZL-uB-rJ6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="beerDescription" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZL-uB-rJ6">
                                         <rect key="frame" x="0.0" y="420" width="330" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
                                         </accessibility>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -192,7 +192,7 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scL-5T-XN2">
-                                        <rect key="frame" x="0.0" y="67" width="330" height="33"/>
+                                        <rect key="frame" x="0.0" y="66" width="330" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                         <nil key="textColor"/>
@@ -282,13 +282,6 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="webaddress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szz-rD-xoE">
-                                        <rect key="frame" x="0.0" y="336" width="109" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="webaddress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgZ-92-0Px">
                                         <rect key="frame" x="0.0" y="356" width="330" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -332,109 +325,241 @@
                         <outlet property="scrollView" destination="FVF-Bv-WWc" id="SP2-sK-yaF"/>
                         <outlet property="searchButton" destination="zDO-fD-Kie" id="c0B-CA-ZKa"/>
                         <outlet property="typeLabel" destination="qRG-Gd-AD3" id="hbv-Oc-pel"/>
-                        <outlet property="webAddressLabel" destination="Szz-rD-xoE" id="xLf-fm-Qb5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAm-E4-535" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3905" y="1933"/>
+            <point key="canvasLocation" x="4142" y="1944"/>
         </scene>
         <!--Info-->
-        <scene sceneID="gJr-F4-gpa">
+        <scene sceneID="NCm-b3-rVh">
             <objects>
-                <viewController id="gar-RM-y1d" sceneMemberID="viewController">
+                <viewController id="bph-yn-X1g" customClass="InfoViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Z5P-AK-4Fp"/>
-                        <viewControllerLayoutGuide type="bottom" id="4VD-5M-U0W"/>
+                        <viewControllerLayoutGuide type="top" id="0La-yY-NZf"/>
+                        <viewControllerLayoutGuide type="bottom" id="SIA-gr-fLu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ICX-9q-hMk">
+                    <view key="view" contentMode="scaleToFill" id="ik4-pS-ivO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sl2-Nl-IUI">
+                                <rect key="frame" x="0.0" y="20" width="375" height="2431"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuo-U0-vdf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" pagingEnabled="YES" editable="NO" text="Ratebeer" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-WL-KUZ">
+                                                <rect key="frame" x="24" y="447" width="343" height="152"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="© 2018 Manuel Kohler 4056 Basel Switzerland manuel.kohler@protonmail.ch" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rhs-gP-fud">
+                                                <rect key="frame" x="24" y="28" width="343" height="91"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Thanks to Hyojin Kim and Julian Sikorski for their help with the localization of the app." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y4Q-ud-l79">
+                                                <rect key="frame" x="24" y="127" width="343" height="63"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" editable="NO" text="Disclaimer:" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7V-D6-uYT">
+                                                <rect key="frame" x="24" y="217" width="343" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" pagingEnabled="YES" editable="NO" text="Bierjohann" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AMg-0a-xm5">
+                                                <rect key="frame" x="24" y="275" width="343" height="164"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" text="Apollo" translatesAutoresizingMaskIntoConstraints="NO" id="ODh-PV-oTC">
+                                                <rect key="frame" x="24" y="607" width="343" height="711"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Obfuscator" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CiC-2L-bgc">
+                                                <rect key="frame" x="24" y="1326" width="343" height="87"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" text="SwiftSoup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x8W-AM-HiI">
+                                                <rect key="frame" x="24" y="1421" width="343" height="667"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="iconmonstr" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yp2-y4-bBX">
+                                                <rect key="frame" x="24" y="2096" width="343" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2500" id="YYr-0Y-1Re"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tuo-U0-vdf" firstAttribute="leading" secondItem="Sl2-Nl-IUI" secondAttribute="leading" id="EbK-3K-JtL"/>
+                                    <constraint firstAttribute="bottom" secondItem="tuo-U0-vdf" secondAttribute="bottom" id="NMB-5T-EWP"/>
+                                    <constraint firstItem="tuo-U0-vdf" firstAttribute="top" secondItem="Sl2-Nl-IUI" secondAttribute="top" id="PKw-1U-hWD"/>
+                                    <constraint firstAttribute="trailing" secondItem="tuo-U0-vdf" secondAttribute="trailing" id="Xgl-aJ-uX5"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tuo-U0-vdf" firstAttribute="width" secondItem="ik4-pS-ivO" secondAttribute="width" id="3Zm-L4-niz"/>
+                            <constraint firstItem="Sl2-Nl-IUI" firstAttribute="leading" secondItem="ik4-pS-ivO" secondAttribute="leading" id="IEQ-5m-qEf"/>
+                            <constraint firstAttribute="trailing" secondItem="Sl2-Nl-IUI" secondAttribute="trailing" id="NUG-zm-kci"/>
+                            <constraint firstItem="SIA-gr-fLu" firstAttribute="top" secondItem="Sl2-Nl-IUI" secondAttribute="bottom" id="qhV-PA-0Ml"/>
+                            <constraint firstItem="Sl2-Nl-IUI" firstAttribute="top" secondItem="ik4-pS-ivO" secondAttribute="top" constant="20" id="zec-zs-6aW"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="iconmonstr-info-6-24.png" id="H7I-pj-qB5"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="2500"/>
+                    <connections>
+                        <outlet property="apolloTextView" destination="ODh-PV-oTC" id="ybb-08-g5w"/>
+                        <outlet property="bierJohannTextView" destination="AMg-0a-xm5" id="Iih-Np-JCq"/>
+                        <outlet property="iconmonstrTextView" destination="yp2-y4-bBX" id="gr4-cS-bIX"/>
+                        <outlet property="obfuscatorTextView" destination="CiC-2L-bgc" id="MFg-Q6-2Sl"/>
+                        <outlet property="rateBeerTextView" destination="dCr-WL-KUZ" id="Rto-k8-fCs"/>
+                        <outlet property="swiftSoupTextView" destination="x8W-AM-HiI" id="dET-Sl-9Sk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pqu-oD-MIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6407.1999999999998" y="73.763118440779621"/>
+        </scene>
+        <!--Bierrevier-->
+        <scene sceneID="QLo-Cp-2xI">
+            <objects>
+                <viewController id="MGU-6x-6St" customClass="BierrevierViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iIJ-iD-Aqy"/>
+                        <viewControllerLayoutGuide type="bottom" id="OwS-gN-NhP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CBe-VU-rsI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWi-eF-Gnr">
-                                <rect key="frame" x="16" y="204" width="348" height="575"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bierrevier_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="fp4-ac-WfL">
+                                <rect key="frame" x="67" y="26" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">DISCLAIMER:  Beers are provided by:  https://www.bierjohann.ch/ Zum Bierjohann Elsässerstrasse 17
-CH-4056 Basel  bier@bierjohann.ch +41 61 5544644  Ratings are provided by:  https://www.ratebeer.com/ RateBeer, LLC
-P.O. Box 475
-Fulton, CA 95439
-United States of America  Apollo GraphQL apollographql/apollo-codegen is licensed under the MIT License:  Copyright (c) 2016 Meteor Development Group, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.  Thanks for the Obfuscator.swift by  Dejan Atanasov: https://theappspace.com/  SwiftSoup  MIT License
-
-Copyright (c) 2016 Nabil Chatbi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="© 2017 Manuel Kohler 4056 Basel Switzerland manuel.kohler@protonmail.ch" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rhs-gP-fud">
-                                <rect key="frame" x="16" y="38" width="229" height="86"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" image="YES"/>
+                                </accessibility>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsL-z3-6TM">
+                                <rect key="frame" x="67" y="164" width="240" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Thanks to Hyojin Kim, Moritz Lupatsch and Julian Sikorski for their help." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y4Q-ud-l79">
-                                <rect key="frame" x="16" y="132" width="229" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.47450980390000003" green="0.12941176469999999" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bierjohann_logo_claim.png" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-Pn-uOn">
-                                <rect key="frame" x="253" y="68" width="116" height="101"/>
+                                <string key="text">ÖFFNUNGSZEITEN
+Bar: 
+Di + Mi	17:00-24:00 
+Do	17:00-01:00 
+Fr + Sa	17:00-02:00 
+Bottleshop:
+Di bis Fr 11:30-17:00
+Sa 10:00-17:00</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FB-fLogo-Blue-broadcast-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="pA6-3f-MnH">
+                                <rect key="frame" x="67" y="548" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="maps_64dp.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsT-I7-HVX">
+                                <rect key="frame" x="267" y="548" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oYF-hF-Jw1">
+                                <rect key="frame" x="67" y="363" width="240" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES"/>
+                                </accessibility>
+                                <string key="text">Bierrevier
+Steinentorberg 20
+CH-4051 Basel 
+https://www.bierrevier.ch/
+ RESERVATIONEN
++41 61 283 02 02</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.47585892680000003" green="0.13060551879999999" blue="0.072186090049999999" alpha="0.60287350171232879" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Info" image="iconmonstr-info-6-24.png" id="aNe-sU-xBf">
-                        <color key="badgeColor" red="0.47549128530000001" green="0.12996667619999999" blue="0.070936404169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Bierrevier" image="markthalle-logo_24.png" id="47x-yg-kmz"/>
+                    <connections>
+                        <outlet property="facebookImage" destination="pA6-3f-MnH" id="hRR-tB-1Rl"/>
+                        <outlet property="googleMapsImage" destination="lsT-I7-HVX" id="rkP-0f-B8O"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q6j-gY-566" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDu-Cr-ko8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5655.1999999999998" y="393.55322338830587"/>
+            <point key="canvasLocation" x="5477.5" y="393.5"/>
         </scene>
         <!--Events-->
         <scene sceneID="fGy-U1-hS7">
@@ -455,14 +580,14 @@ SOFTWARE.</string>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnt-R9-Ejk">
                                             <rect key="frame" x="11" y="0.0" width="364" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-Ou-rS2">
                                             <rect key="frame" x="11" y="31" width="364" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -471,6 +596,7 @@ SOFTWARE.</string>
                                 <connections>
                                     <outlet property="dateLabel" destination="xpi-Ou-rS2" id="feJ-r3-mVm"/>
                                     <outlet property="titleLabel" destination="pnt-R9-Ejk" id="5dJ-MV-b1H"/>
+                                    <segue destination="xMX-HG-zUq" kind="show" identifier="ShowEventDetail" id="tkn-p5-gBJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -483,7 +609,53 @@ SOFTWARE.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oot-Bh-Cev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4780" y="1156"/>
+            <point key="canvasLocation" x="4780" y="1178"/>
+        </scene>
+        <!--Event Detail View Controller-->
+        <scene sceneID="cMA-lZ-Mko">
+            <objects>
+                <viewController id="xMX-HG-zUq" customClass="EventDetailViewController" customModule="bierjohann" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iwn-nY-qeV"/>
+                        <viewControllerLayoutGuide type="bottom" id="GY9-d7-G3c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rUF-KX-tmh" customClass="EventDetail">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlA-rK-32Q">
+                                <rect key="frame" x="16" y="81" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHu-7q-wFm">
+                                <rect key="frame" x="16" y="122" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i8y-Qc-KT2">
+                                <rect key="frame" x="16" y="161" width="350" height="294"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="bodyEventTextView" destination="i8y-Qc-KT2" id="0Ha-jO-JiT"/>
+                        <outlet property="dateEventLabel" destination="bHu-7q-wFm" id="4Gc-HS-n6U"/>
+                        <outlet property="titleEventLabel" destination="PlA-rK-32Q" id="Ic5-gZ-wDk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="io0-jA-qKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4780" y="1944.3778110944529"/>
         </scene>
         <!--Home-->
         <scene sceneID="oYR-JJ-asN">
@@ -498,9 +670,19 @@ SOFTWARE.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bierjohann_logo_claim" translatesAutoresizingMaskIntoConstraints="NO" id="jrA-j3-eqC">
-                                <rect key="frame" x="122" y="268" width="130" height="130"/>
+                                <rect key="frame" x="122" y="215" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zoa-v9-K6A">
+                                <rect key="frame" x="100" y="369" width="174" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Öffnungszeiten: Di/Mi: 16:00–23:00
+Do/Fr/Sa: 16:00–24:00
+So+Mo: geschlossen</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.45998144149780273" green="0.13087043166160583" blue="0.073496021330356598" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -508,7 +690,7 @@ SOFTWARE.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSG-O4-sNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3047" y="394"/>
+            <point key="canvasLocation" x="3487" y="394"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hNU-UN-FE8">
@@ -525,7 +707,8 @@ SOFTWARE.</string>
                         <segue destination="NQX-bv-whz" kind="relationship" relationship="viewControllers" id="t3W-61-mOr"/>
                         <segue destination="5Ie-Ug-yLt" kind="relationship" relationship="viewControllers" id="Hcd-0v-XPN"/>
                         <segue destination="NQW-gc-H1U" kind="relationship" relationship="viewControllers" id="Tnk-NZ-xW2"/>
-                        <segue destination="gar-RM-y1d" kind="relationship" relationship="viewControllers" id="cZw-ML-E6x"/>
+                        <segue destination="MGU-6x-6St" kind="relationship" relationship="viewControllers" id="O9s-Ma-pwx"/>
+                        <segue destination="bph-yn-X1g" kind="relationship" relationship="viewControllers" id="zXM-Y4-fMC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gqc-Ga-j2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -568,16 +751,19 @@ SOFTWARE.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvR-lY-e6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3906" y="394"/>
+            <point key="canvasLocation" x="4143" y="394"/>
         </scene>
     </scenes>
     <resources>
         <image name="Bierjohann_logo_claim" width="380" height="389"/>
-        <image name="Bierjohann_logo_claim.png" width="150" height="154"/>
+        <image name="FB-fLogo-Blue-broadcast-2.png" width="250" height="250"/>
+        <image name="bierrevier_logo.png" width="426" height="290"/>
         <image name="iconmonstr-beer-4-24.png" width="24" height="24"/>
         <image name="iconmonstr-calendar-5-24.png" width="24" height="24"/>
         <image name="iconmonstr-home-6-24.png" width="24" height="24"/>
         <image name="iconmonstr-info-6-24.png" width="24" height="24"/>
+        <image name="maps_64dp.png" width="64" height="64"/>
+        <image name="markthalle-logo_24.png" width="46" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JJl-4z-4Tg"/>

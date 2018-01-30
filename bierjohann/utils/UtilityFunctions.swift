@@ -115,7 +115,7 @@ func diffBeers(savedBeers: [Beer], newBeers: [Beer]) -> [Int] {
     let now = Date().secondsSince1970
     
     let timeIndex = zip(newBeers, savedBeers).enumerated().filter() {
-        (now - $1.1.timestamp) < Constants.DAY_IN_SECONDS
+        (now - $1.1.timestamp) < Constants.DAY_IN_SECONDS * 2
         }.map{$0.0}
 
     for index in timeIndex {

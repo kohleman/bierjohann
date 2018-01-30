@@ -1,0 +1,6 @@
+framework module Pods_bierjohann {
+  umbrella header "Pods-bierjohann-umbrella.h"
+
+  export *
+  module * { export * }
+}
