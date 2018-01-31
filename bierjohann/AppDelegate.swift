@@ -10,6 +10,7 @@ import UIKit
 import Apollo
 
 let apollo = createApolloClient()
+var beers = [Beer]()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

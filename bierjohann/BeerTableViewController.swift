@@ -15,7 +15,6 @@ import Apollo
 class BeerTableViewController: UITableViewController {
     
     //MARK: Properties
-    var beers = [Beer]()
     
     let BierJohannName = "Bierjohann"
     let cellIdentifier = "BeerTableViewCell"
@@ -27,36 +26,13 @@ class BeerTableViewController: UITableViewController {
     @IBOutlet weak var MenuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // Load any saved beers, otherwise load data from website only
-        if let savedBeers = loadBeers() {
-            beers = harvestBeers(savedBeers: savedBeers)
-            
-            for _ in savedBeers {
-//                print(b.brand)
-//                print(b.timestamp)
-//                print("CC \(countryCodeToEmoji(country: (b.countryCode)))")
-            }
-
-        }
-        else {
-            // Loading data for the first time
-            os_log("Loading beers for the first time.", log:OSLog.default, type: .debug)
-            beers = extractAndInitBeers(webaddress: Constants.BIERJOHANN_URL)
-            saveBeers(beers: beers)
-        }
-        
-        // getting data from ratebeer.com
-        for beer in beers {
-            let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
-            _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer)
-        }
         
         setUpdatedLabel()
-        addRefreshControl()
+//        addRefreshControl()
         
-        
+        super.viewDidLoad()
+
 //        RefreshButton.action = #selector(BeerTableViewController.beerRefresh(sender:))
 //        RefreshButton.tintColor = Constants.BIERJOHANN_BROWN
 //        RefreshButton.target = self
@@ -168,8 +144,8 @@ class BeerTableViewController: UITableViewController {
                 beerDetailViewController.beer = selectedBeer
                 beerDetailViewController.navigationItem.hidesBackButton = false
 
-                let searchString = [selectedBeer.brand, selectedBeer.type].flatMap({$0}).joined(separator: " ")
-                _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: selectedBeer)
+//                let searchString = [selectedBeer.brand, selectedBeer.type].flatMap({$0}).joined(separator: " ")
+//                _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: selectedBeer)
 
 
             default:

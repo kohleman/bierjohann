@@ -9,7 +9,7 @@
 import Foundation
 import Apollo
 import os.log
-
+import UIKit
 
 func createApolloClient () -> ApolloClient {
 
@@ -34,7 +34,7 @@ func queryGraphql(apolloClient: ApolloClient, searchString: String, beer: Beer) 
     
     _ = apolloClient.watch(query: BeerRatingQuery(q: searchString)) { (result, error) in
         guard let data = result?.data else {
-            os_log("#### NO DATA found with %i %@!", log: OSLog.default, type: .debug, beer.runningNumber, searchString)
+            os_log("NO DATA found with %i %@!", log: OSLog.default, type: .debug, beer.runningNumber, searchString)
             return
         }
         
@@ -48,6 +48,26 @@ func queryGraphql(apolloClient: ApolloClient, searchString: String, beer: Beer) 
             beer.abv = (data.beerSearch?.items[0]?.abv) ?? 0.0
             beer.overallScore = (data.beerSearch?.items[0]?.overallScore) ?? 0.0
             beer.imageUrl = (data.beerSearch?.items[0]?.imageUrl) ?? ""
+            
+//                let urlString = "http://www.foo.com/myImage.jpg"
+            guard let url = URL(string: beer.imageUrl) else { return }
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("Failed fetching image:", error!)
+            return
+            }
+        
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            print("Not a proper HTTPURLResponse or statusCode")
+            return
+            }
+        
+            DispatchQueue.main.async {
+//            self.myImageView.image = UIImage(data: data!)
+                beer.imageData = UIImage(data: data!)!
+            }
+            }.resume()
+
             
             beer.style.name = (data.beerSearch?.items[0]?.style.name) ?? ""
             beer.brewer.city = (data.beerSearch?.items[0]?.brewer?.city) ?? ""

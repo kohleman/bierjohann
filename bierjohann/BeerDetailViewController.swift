@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import os.log
 
 class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var beerNewLabel: UILabel!
+    @IBOutlet weak var beerBrandLabel: UILabel!
     @IBOutlet weak var beerNumberLabel: UILabel!
     @IBOutlet weak var beerFlagLabel: UILabel!
-    @IBOutlet weak var beerBrandLabel: UILabel!
     @IBOutlet weak var beerTypelabel: UILabel!
 //      @IBOutlet weak var beerRatingValue: UITextField!
     @IBOutlet weak var beerRatingCount: UILabel!
@@ -22,12 +23,10 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var beerStyleName: UILabel!
     @IBOutlet weak var beerBrewerCity: UILabel!
     @IBOutlet weak var beerDescription: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var beerBrewerWebaddress: UILabel!
     
     @IBOutlet weak var searchButton: UIButton!
     
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var brandLabel: UILabel!
     @IBOutlet weak var abvLabel: UILabel!
     @IBOutlet weak var overallScoreLabel: UILabel!
@@ -35,24 +34,26 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var ratingcountLabel: UILabel!
     @IBOutlet weak var brewerCity: UILabel!
     @IBOutlet weak var beerDescr: UILabel!
-    @IBOutlet weak var webAddressLabel: UILabel!
     
+    @IBOutlet weak var beerImageView: UIImageView!
     
     var beer: Beer?
+    let apollo = createApolloClient()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width-100, height: 1000)
+//        scrollView.contentSize = CGSize(width: self.view.frame.size.width-100, height: 1000)
         
         if let beer = beer {
             navigationItem.title = ""
             navigationItem.hidesBackButton = false
 
             beerNewLabel.isHidden = beer.new
+            beerBrandLabel.text = beer.brand
             beerNumberLabel.text = String(beer.runningNumber)
             beerFlagLabel.text = countryCodeToEmoji(country: beer.countryCode)
-            beerBrandLabel.text = beer.brand
             beerTypelabel.text = beer.type
 //            beerRatingValue.text = String(roundOneDecimals(d: beer.ratingValue))
             beerRatingCount.text = String(beer.ratingCount)
@@ -62,10 +63,12 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             beerBrewerCity.text = beer.brewer.city
             beerDescription.text = beer.desc
             beerBrewerWebaddress.text = beer.brewer.web
+            beerImageView.image = beer.imageData
             print(beer.imageUrl)
             
-            typeLabel.text = NSLocalizedString("BeerName", comment: "Beer Name")
-            brandLabel.text  = NSLocalizedString("BrewerName", comment: "Brewery")
+//
+//            typeLabel.text = NSLocalizedString("BeerName", comment: "Beer Name")
+//            brandLabel.text  = NSLocalizedString("BrewerName", comment: "Brewery")
             abvLabel.text = NSLocalizedString("ABV", comment: "ABV")
             overallScoreLabel.text = NSLocalizedString("UserRating", comment: "UserRating")
             StyleLabel.text = NSLocalizedString("BeerStyle", comment: "BeerStyle")
@@ -93,5 +96,21 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             UIApplication.shared.openURL(url)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        func run() {
+            print("Running viewWillAppear")
+            
+            let searchString = [beer?.brand, beer?.type].flatMap({$0}).joined(separator: " ")
+            
+            _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer!)
+            
+            
+//            beerBrewerCity.text = beer?.brewer.city
+//            beerDescription.text = beer?.desc
+            
+        }
+        run()
+    }    
 }
 

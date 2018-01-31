@@ -16,6 +16,7 @@
 		6224C04F20042C1A00561FF5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6224C04E20042C1A00561FF5 /* Podfile */; };
 		623F1FDA1F79630400FBA285 /* UtilityFunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F1FD91F79630400FBA285 /* UtilityFunctionsTests.swift */; };
 		62499E5C1F077D4800CC518B /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* UtilityFunctions.swift */; };
+		6255886320223E3B000A61FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6255886220223E3B000A61FC /* HomeViewController.swift */; };
 		6260F4E72010E26B00F657E5 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6260F4E62010E26B00F657E5 /* NetworkReachability.swift */; };
 		626E73432005306200C420C0 /* Apollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		626F05C61F7A947500753621 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* UtilityFunctions.swift */; };
@@ -172,6 +173,7 @@
 		62499E5B1F077D4800CC518B /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
+		6255886220223E3B000A61FC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6260F4E62010E26B00F657E5 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		627309591F8E16E400DF2A76 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphql; sourceTree = "<group>"; };
 		6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = rateBeerAPI.swift; path = resources/graphql/rateBeerAPI.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				62B91F3F1F6BDEA40077A288 /* Localizable.strings */,
 				62A933F31EF6E5430006934B /* AppDelegate.swift */,
 				62A933F71EF6E5430006934B /* Main.storyboard */,
+				6255886220223E3B000A61FC /* HomeViewController.swift */,
 				62048A8F201A427800ED37CB /* InfoViewController.swift */,
 				62D938BE201A2F6F0070C629 /* BierrevierViewController.swift */,
 				62D938B820191F1E0070C629 /* markthalle-logo_24.png */,
@@ -707,6 +710,7 @@
 				62F66ADB1F9CCF2100395682 /* Constants.swift in Sources */,
 				6273095F1F8E19AB00DF2A76 /* rateBeerAPI.swift in Sources */,
 				627309631F8E277000DF2A76 /* ApolloClient.swift in Sources */,
+				6255886320223E3B000A61FC /* HomeViewController.swift in Sources */,
 				62F66AD11F9BAB0800395682 /* Obfuscator.swift in Sources */,
 				6260F4E72010E26B00F657E5 /* NetworkReachability.swift in Sources */,
 				62499E5C1F077D4800CC518B /* UtilityFunctions.swift in Sources */,

@@ -94,7 +94,7 @@ func extractAndInitBeers(webaddress: String) -> [Beer]{
         if line.contains("slider__element--text") {
             aName = extractString(s: line)
             
-            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, overallScore: 0.0) else {
+            guard let aBeer = Beer(runningNumber: counter, brand: aBrand, type: aName, ratingValue: 0.0, ratingCount: 0, new: true, timestamp: 0, abv: 0.0, overallScore: 0.0, imageData: UIImage.init()) else {
                 fatalError("Unable to instantiate class Beer with " + aBrand)
             }
             
