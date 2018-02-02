@@ -12,6 +12,8 @@ import os.log
 
 class EventTableViewController: UITableViewController {
     
+    @IBOutlet weak var HeaderUINavigationItem: UINavigationItem!
+    
     var events = [Event]()
     var eventFirst = Event()
 
@@ -21,7 +23,6 @@ class EventTableViewController: UITableViewController {
         if (events.count == 0) {
             eventFirst = Event()
             os_log("%@", log: OSLog.default, type: .debug, "startingId is not defined, first run ever")
-
         }
         else {
             eventFirst = events.first!

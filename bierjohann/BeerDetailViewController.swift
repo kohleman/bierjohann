@@ -23,7 +23,7 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var beerStyleName: UILabel!
     @IBOutlet weak var beerBrewerCity: UILabel!
     @IBOutlet weak var beerDescription: UILabel!
-    @IBOutlet weak var beerBrewerWebaddress: UILabel!
+    @IBOutlet weak var webAddressTextView: UITextView!
     
     @IBOutlet weak var searchButton: UIButton!
     
@@ -62,11 +62,10 @@ class BeerViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             beerStyleName.text = beer.style.name
             beerBrewerCity.text = beer.brewer.city
             beerDescription.text = beer.desc
-            beerBrewerWebaddress.text = beer.brewer.web
+            webAddressTextView.text = beer.brewer.web
             beerImageView.image = beer.imageData
             print(beer.imageUrl)
             
-//
 //            typeLabel.text = NSLocalizedString("BeerName", comment: "Beer Name")
 //            brandLabel.text  = NSLocalizedString("BrewerName", comment: "Brewery")
             abvLabel.text = NSLocalizedString("ABV", comment: "ABV")

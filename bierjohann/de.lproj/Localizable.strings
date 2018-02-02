@@ -7,7 +7,7 @@
 
 "BeerName"= "";
 "BrewerName"= "Brauerei";
-"ABV"= "";
+"ABV"= "Alkohol";
 "UserRating"= "Bewertung";
 "BeerStyle"= "Stil";
 "NumberOfRatings"= "# Bewertungen";

@@ -17,6 +17,7 @@
 		623F1FDA1F79630400FBA285 /* UtilityFunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F1FD91F79630400FBA285 /* UtilityFunctionsTests.swift */; };
 		62499E5C1F077D4800CC518B /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* UtilityFunctions.swift */; };
 		6255886320223E3B000A61FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6255886220223E3B000A61FC /* HomeViewController.swift */; };
+		6255886F20250705000A61FC /* markthalle-logo_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 6255886E20250704000A61FC /* markthalle-logo_24.png */; };
 		6260F4E72010E26B00F657E5 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6260F4E62010E26B00F657E5 /* NetworkReachability.swift */; };
 		626E73432005306200C420C0 /* Apollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE0F021F84FEB300EA4F29 /* Apollo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		626F05C61F7A947500753621 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62499E5B1F077D4800CC518B /* UtilityFunctions.swift */; };
@@ -38,7 +39,6 @@
 		62A934141EF6E5430006934B /* bierjohannUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A934131EF6E5430006934B /* bierjohannUITests.swift */; };
 		62ABD3C71FE3270C0024A791 /* iconmonstr-beer-4-240.png in Resources */ = {isa = PBXBuildFile; fileRef = 62ABD3BF1FE3270C0024A791 /* iconmonstr-beer-4-240.png */; };
 		62ABD3C91FE3280C0024A791 /* iconmonstr-beer-4-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 62ABD3C81FE3280C0024A791 /* iconmonstr-beer-4-72.png */; };
-		62ABD3CB1FE328800024A791 /* iconmonstr-beer-4-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 62ABD3CA1FE3287F0024A791 /* iconmonstr-beer-4-48.png */; };
 		62ABD3CE1FE329320024A791 /* iconmonstr-beer-4-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 62ABD3CD1FE329320024A791 /* iconmonstr-beer-4-24.png */; };
 		62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B91F3F1F6BDEA40077A288 /* Localizable.strings */; };
 		62BB33021FE5634500F87699 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BB33001FE5634500F87699 /* EventTableViewController.swift */; };
@@ -51,7 +51,6 @@
 		62D630A11F86883200E9087C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D630A01F86883200E9087C /* Extensions.swift */; };
 		62D938B52019168F0070C629 /* bierrevier_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 62D938AD2019168E0070C629 /* bierrevier_logo.png */; };
 		62D938B720191E8E0070C629 /* bierrevier_logo_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 62D938B620191E8E0070C629 /* bierrevier_logo_24.png */; };
-		62D938B920191F1E0070C629 /* markthalle-logo_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 62D938B820191F1E0070C629 /* markthalle-logo_24.png */; };
 		62D938BF201A2F6F0070C629 /* BierrevierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D938BE201A2F6F0070C629 /* BierrevierViewController.swift */; };
 		62F66AD11F9BAB0800395682 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AC61F9BAABD00395682 /* Obfuscator.swift */; };
 		62F66AD21F9BAB0900395682 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F66AC61F9BAABD00395682 /* Obfuscator.swift */; };
@@ -174,6 +173,8 @@
 		624BEB281EF70CF6008FF485 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
 		624BEB2A1EF71725008FF485 /* BeerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
 		6255886220223E3B000A61FC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6255886D20250352000A61FC /* iconmonstr-beer-4-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-48.png"; path = "../../../../../Downloads/iconmonstr-beer-4-48.png"; sourceTree = "<group>"; };
+		6255886E20250704000A61FC /* markthalle-logo_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markthalle-logo_24.png"; sourceTree = "<group>"; };
 		6260F4E62010E26B00F657E5 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		627309591F8E16E400DF2A76 /* graphql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphql; sourceTree = "<group>"; };
 		6273095C1F8E190A00DF2A76 /* rateBeerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = rateBeerAPI.swift; path = resources/graphql/rateBeerAPI.swift; sourceTree = "<group>"; };
@@ -197,7 +198,6 @@
 		62A934151EF6E5430006934B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62ABD3BF1FE3270C0024A791 /* iconmonstr-beer-4-240.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-240.png"; path = "../../../../../Downloads/iconmonstr-beer-4-240.png"; sourceTree = "<group>"; };
 		62ABD3C81FE3280C0024A791 /* iconmonstr-beer-4-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-72.png"; path = "../../../../../Downloads/iconmonstr-beer-4-72.png"; sourceTree = "<group>"; };
-		62ABD3CA1FE3287F0024A791 /* iconmonstr-beer-4-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-48.png"; path = "../../../../Downloads/iconmonstr-beer-4-48.png"; sourceTree = "<group>"; };
 		62ABD3CC1FE328860024A791 /* iconmonstr-beer-4-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconmonstr-beer-4-48.png"; sourceTree = "<group>"; };
 		62ABD3CD1FE329320024A791 /* iconmonstr-beer-4-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-24.png"; path = "../../../../../Downloads/iconmonstr-beer-4-24.png"; sourceTree = "<group>"; };
 		62B91F2B1F6BDD8A0077A288 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -214,8 +214,6 @@
 		62D630A01F86883200E9087C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		62D938AD2019168E0070C629 /* bierrevier_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bierrevier_logo.png; path = ../../../../../Desktop/bierrevier_logo.png; sourceTree = "<group>"; };
 		62D938B620191E8E0070C629 /* bierrevier_logo_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bierrevier_logo_24.png; path = ../../../../../Desktop/bierrevier_logo_24.png; sourceTree = "<group>"; };
-		62D938B820191F1E0070C629 /* markthalle-logo_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "markthalle-logo_24.png"; path = "../../../../Downloads/markthalle-logo_24.png"; sourceTree = "<group>"; };
-		62D938BA20191F3D0070C629 /* markthalle-logo_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markthalle-logo_24.png"; sourceTree = "<group>"; };
 		62D938BB20191F3D0070C629 /* iconmonstr-beer-4-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-beer-4-48.png"; path = "../../../../../Downloads/iconmonstr-beer-4-48.png"; sourceTree = "<group>"; };
 		62D938BE201A2F6F0070C629 /* BierrevierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BierrevierViewController.swift; sourceTree = "<group>"; };
 		62DE0EF61F84FEB300EA4F29 /* Apollo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Apollo.xcodeproj; path = "../apollo-ios/Apollo.xcodeproj"; sourceTree = "<group>"; };
@@ -268,9 +266,10 @@
 		62932A811F6C1D22001082B1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				6255886E20250704000A61FC /* markthalle-logo_24.png */,
+				6255886D20250352000A61FC /* iconmonstr-beer-4-48.png */,
 				62048A8D201A3E9B00ED37CB /* maps_64dp.png */,
 				62048A84201A3A9F00ED37CB /* FB-fLogo-Blue-broadcast-2.png */,
-				62D938BA20191F3D0070C629 /* markthalle-logo_24.png */,
 				62D938BB20191F3D0070C629 /* iconmonstr-beer-4-48.png */,
 				62D938AD2019168E0070C629 /* bierrevier_logo.png */,
 				620BE8F51FE40F6B00B1C1B9 /* iconmonstr-home-6-24.png */,
@@ -321,8 +320,6 @@
 				6255886220223E3B000A61FC /* HomeViewController.swift */,
 				62048A8F201A427800ED37CB /* InfoViewController.swift */,
 				62D938BE201A2F6F0070C629 /* BierrevierViewController.swift */,
-				62D938B820191F1E0070C629 /* markthalle-logo_24.png */,
-				62ABD3CA1FE3287F0024A791 /* iconmonstr-beer-4-48.png */,
 				62A933FC1EF6E5430006934B /* LaunchScreen.storyboard */,
 				62F66ADA1F9CCF2100395682 /* Constants.swift */,
 				62F66AC61F9BAABD00395682 /* Obfuscator.swift */,
@@ -592,7 +589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62A933FE1EF6E5430006934B /* LaunchScreen.storyboard in Resources */,
-				62D938B920191F1E0070C629 /* markthalle-logo_24.png in Resources */,
 				62ABD3CE1FE329320024A791 /* iconmonstr-beer-4-24.png in Resources */,
 				62D938B52019168F0070C629 /* bierrevier_logo.png in Resources */,
 				62B91F3D1F6BDEA40077A288 /* Localizable.strings in Resources */,
@@ -600,12 +596,12 @@
 				62048A8E201A3E9B00ED37CB /* maps_64dp.png in Resources */,
 				620BE8F21FE40B2F00B1C1B9 /* iconmonstr-info-6-24.png in Resources */,
 				62ABD3C71FE3270C0024A791 /* iconmonstr-beer-4-240.png in Resources */,
-				62ABD3CB1FE328800024A791 /* iconmonstr-beer-4-48.png in Resources */,
 				620BE8F61FE40F6B00B1C1B9 /* iconmonstr-home-6-24.png in Resources */,
 				62A933F91EF6E5430006934B /* Main.storyboard in Resources */,
 				6224C04F20042C1A00561FF5 /* Podfile in Resources */,
 				620BE8F41FE40BB300B1C1B9 /* iconmonstr-calendar-5-24.png in Resources */,
 				62932A7F1F6C1BA4001082B1 /* Bierjohann_logo_claim.png in Resources */,
+				6255886F20250705000A61FC /* markthalle-logo_24.png in Resources */,
 				62ABD3C91FE3280C0024A791 /* iconmonstr-beer-4-72.png in Resources */,
 				62D938B720191E8E0070C629 /* bierrevier_logo_24.png in Resources */,
 				62048A8C201A3A9F00ED37CB /* FB-fLogo-Blue-broadcast-2.png in Resources */,

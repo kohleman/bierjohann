@@ -91,6 +91,7 @@ func parseEvents(html: String) -> Event {
         
         for p: Element in pElements.array(){
             let pText: String = try p.text()
+//            var replacedpText = pText.replacingOccurrences(of: "<br>", with: "\n")
             event.body += pText
         }
         return event

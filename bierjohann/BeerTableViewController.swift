@@ -63,7 +63,7 @@ class BeerTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (beers.count > 0) {
-//            HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
+            HeaderUINavigationItem.title =  BierJohannName + " " + NSLocalizedString("Title", comment: "Title within the app")
             return 1
         }
         else {

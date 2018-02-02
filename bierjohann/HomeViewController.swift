@@ -11,11 +11,7 @@ import os.log
 
 class HomeViewController: UIViewController {
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Reached Home View")
-        
+    func doLoadBeers() {
         // Load any saved beers, otherwise load data from website only
         if let savedBeers = loadBeers() {
             beers = harvestBeers(savedBeers: savedBeers)
@@ -32,6 +28,11 @@ class HomeViewController: UIViewController {
             let searchString = [beer.brand, beer.type].flatMap({$0}).joined(separator: " ")
             _ = queryGraphql(apolloClient: apollo, searchString: searchString, beer: beer)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doLoadBeers()
     }
 
     override func didReceiveMemoryWarning() {
